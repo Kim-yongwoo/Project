@@ -77,6 +77,7 @@ public class NoticeController {
 
     }
 
+
     /**
      * 게시판 작성 페이지 이동
      *
@@ -138,7 +139,6 @@ public class NoticeController {
 
             // 저장이 완료되면 사용자에게 보여줄 메시지
             msg = "등록되었습니다.";
-
 
         } catch (Exception e) {
 
