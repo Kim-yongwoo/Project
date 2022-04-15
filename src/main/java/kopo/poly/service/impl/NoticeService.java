@@ -70,6 +70,5 @@ public class NoticeService implements INoticeService {
         log.info(this.getClass().getName() + ".deleteNoticeInfo start!");
 
         noticeMapper.deleteNoticeInfo(pDTO);
-
     }
 }
