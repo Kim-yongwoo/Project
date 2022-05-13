@@ -1,8 +1,8 @@
-package kopo.poly.service.impl;
+package yw.basket.service.impl;
 
-import kopo.poly.dto.NoticeDTO;
-import kopo.poly.persistance.mapper.INoticeMapper;
-import kopo.poly.service.INoticeService;
+import yw.basket.dto.NoticeDTO;
+import yw.basket.persistance.mapper.INoticeMapper;
+import yw.basket.service.INoticeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

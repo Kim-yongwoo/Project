@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="yw.basket.mapper.IUserMapper">
+    <!--회원정보 등록 -->
+    <insert id="InsertUserInfo" parameterType="UserDTO">
+        INSERT
+          INTO TB_USER
+        (
+          USER_LOGIN
+        , USER_ID
+        , USER_PW
+        , USER_NAME
+        , USER_EMAIL
+        , USER_LEVEL
+        , USER_AGE
+        , USER_GENDER
+        , USER_NICKNAME
+        , USER_STATUS
+        , JOIN_DT
+        )
+        VALUES
+        (
+          1
+        , #{userId}
+        , #{userPw}
+        , #{userName}
+        , #{userEmail}
+        , 0
+        , #{userAge}
+        , #{userGender}
+        , #{userNickname}
+        , 'Y'
+        , NOW()
+        )
+    </insert>
+
+</mapper>

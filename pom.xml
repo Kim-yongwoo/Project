@@ -8,8 +8,8 @@
         <version>2.6.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>kopo</groupId>
-    <artifactId>poly</artifactId>
+    <groupId>yw</groupId>
+    <artifactId>basketlife</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SpringBootPRJ</name>
     <description>SpringBootPRJ</description>

@@ -1,4 +1,4 @@
-package kopo.poly.dto;
+package yw.basket.dto;
 
 import lombok.Getter;
 import lombok.Setter;

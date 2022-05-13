@@ -2,8 +2,8 @@
          pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="kopo.poly.dto.NoticeDTO" %>
-<%@ page import="kopo.poly.util.CmmUtil" %>
+<%@ page import="yw.basket.dto.NoticeDTO" %>
+<%@ page import="yw.basket.util.CmmUtil" %>
 <%
     session.setAttribute("SESSION_USER_ID", "USER01"); //세션 강제 적용, 로그인된 상태로 보여주기 위함
 

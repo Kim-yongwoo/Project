@@ -1,6 +1,6 @@
-package kopo.poly.service;
+package yw.basket.service;
 
-import kopo.poly.dto.NoticeDTO;
+import yw.basket.dto.NoticeDTO;
 import java.util.List;
 
 

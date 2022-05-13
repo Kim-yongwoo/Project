@@ -1,7 +1,8 @@
-package kopo.poly.persistance.mapper;
+package yw.basket.persistance.mapper;
 
-import kopo.poly.dto.NoticeDTO;
+import yw.basket.dto.NoticeDTO;
 import org.apache.ibatis.annotations.Mapper;
+
 import java.util.List;
 
 @Mapper
