@@ -12,6 +12,7 @@
 
                 let params = $("#signUpForm").serialize();
 
+
                 $.ajax({
                     type: "POST"
                     , url: "/loginCheck"
