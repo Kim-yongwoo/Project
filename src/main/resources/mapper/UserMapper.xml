@@ -35,13 +35,16 @@
         , NOW()
         )
 
-        SELECT
-            FROM TB_USER
-        (
-          USER_ID
-        , USER_PW
-                )
-
     </insert>
+
+    <select id="Select UserInfo" parameterType="UserDTO">
+
+        SELECT USER_ID
+             , USER_PW
+        FROM TB_USER
+        WHERE USER_ID = #{userId}
+          AND USER_PW = #{userPw}
+
+    </select>
 
 </mapper>

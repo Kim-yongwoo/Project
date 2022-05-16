@@ -8,4 +8,8 @@ public interface IUserService {
     public UserDTO loginCheck(UserDTO userDTO) throws Exception;
 
     public int signUp(UserDTO userDTO) throws Exception;
+
+    /*로그인*/
+
+
 }
