@@ -4,7 +4,7 @@
 
 <mapper namespace="yw.basket.mapper.IUserMapper">
     <!--회원정보 등록 -->
-    <insert id="InsertUserInfo" parameterType="UserDTO">
+    <insert id="insertUserInfo" parameterType="UserDTO">
         INSERT
           INTO TB_USER
         (
@@ -36,15 +36,31 @@
         )
 
     </insert>
+<!--수정-->
+    <select id="loginProc" resultType="UserDTO">
+        SELECT USER_NAME AS 'userName'
 
-    <select id="Select UserInfo" parameterType="UserDTO">
-
-        SELECT USER_ID
-             , USER_PW
-        FROM TB_USER
-        WHERE USER_ID = #{userId}
-          AND USER_PW = #{userPw}
-
+          FROM TB_USER
+         WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
     </select>
+
+    <select id="loginCheck" parameterType="UserDTO" resultType="int">
+        SELECT COUNT(*)
+          FROM TB_USER
+         WHERE USER_ID = #{userId}
+           AND USER_PW = #{userPw}
+    </select>
+
+    <select id="userInfo" resultType="UserDTO" parameterType="UserDTO">
+        SELECT
+            USER_NAME
+        ,   USER_EMAIL
+        ,   USER_NICKNAME
+        ,   USER_GENDER
+        FROM
+            TB_USER
+        WHERE USER_ID = #{userId}
+    </select>
+
 
 </mapper>

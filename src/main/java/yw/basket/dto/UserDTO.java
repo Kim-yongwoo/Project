@@ -22,4 +22,21 @@ public class UserDTO {
     private String userStatus;
     private Timestamp joinDt;
 
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "userSeq=" + userSeq +
+                ", userLogin=" + userLogin +
+                ", userId='" + userId + '\'' +
+                ", userPw='" + userPw + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userLevel='" + userLevel + '\'' +
+                ", userAge=" + userAge +
+                ", userGender='" + userGender + '\'' +
+                ", userNickname='" + userNickname + '\'' +
+                ", userStatus='" + userStatus + '\'' +
+                ", joinDt=" + joinDt +
+                '}';
+    }
 }

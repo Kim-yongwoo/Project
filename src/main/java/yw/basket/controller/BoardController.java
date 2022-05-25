@@ -9,4 +9,6 @@ public class BoardController {
     public String userBoard() throws Exception {
         return "/board/boardList";
     }
+
+
 }
