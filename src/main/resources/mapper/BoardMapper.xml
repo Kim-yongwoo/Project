@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- JAVA와 연결할 Mapper 파일 설정 -->
+<mapper namespace="yw.basket.mapper.IBoardMapper">
+
+	<!-- <select> 태그를 이용하여 select 쿼리임을 나타냄. 앞서 mapper에서 말했던 메소드의 이름은 select 쿼리의 id값과 같아야함. -->
+	<select id="selectBoardList" resultType="BoardDTO">
+		SELECT
+		    BOARD_SEQ
+		   ,BOARD_TITLE
+		   ,BOARD_REG_DATE
+		   ,BOARD_REG_SEQ
+		FROM
+		    TB_BOARD
+		ORDER BY BOARD_SEQ DESC
+
+	</select>
+
+	<insert id="insertBoard" parameterType="BoardDTO">
+
+		INSERT
+			INTO TB_BOARD
+		(
+			BOARD_TITLE
+		   ,BOARD_REG_DATE
+		   ,BOARD_REG_SEQ
+		)
+		VALUES
+			(
+		   ,#{boardTitle}
+		   ,NOW()
+		   ,1
+			)
+	</insert>
+
+</mapper>

@@ -17,7 +17,9 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class UserController {
 
-    @Resource(name = "UserService")
+
+    //서비스 객체 가져오기기
+   @Resource(name = "UserService")
     private IUserService userService;
 
     /**
@@ -27,7 +29,7 @@ public class UserController {
      */
     @GetMapping(value = "/")
     public String start(HttpSession session) {
-        session.setAttribute("userInfo", "TEst");
+        session.setAttribute("userInfo", "Test");
         return "redirect:/login";
     }
 
@@ -85,11 +87,11 @@ public class UserController {
         // 로그인 성공 시
 
         if (user == null) {
-            model.addAttribute("msg", "오류");
+            model.addAttribute("msg", "다시 시도해주세요");
             model.addAttribute("url", "/login");
         } else {
-            session.setAttribute("userInfo", user.getUserName());
-            model.addAttribute("msg", "성공");
+            session.setAttribute("user", user);  // 로그인 성공시에만 세션을 담는다
+            model.addAttribute("msg", "환영합니다!");
             model.addAttribute("url", "/main");
         }
 
@@ -105,7 +107,6 @@ public class UserController {
     public String userReg() throws Exception {
         return "user/reg";
     }
-
 
     /**
      * @param : UserDTO

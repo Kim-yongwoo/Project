@@ -19,4 +19,9 @@ public interface IUserService {
 
     // 로그인 처리
     public UserDTO loginProc(UserDTO userDTO) throws Exception;
+
+    //커피 테스트
+    public String coffee() throws Exception;
+
+    UserDTO getUserInfo(UserDTO userDTO) throws Exception;
 }

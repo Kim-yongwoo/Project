@@ -13,10 +13,10 @@
     <title>마이페이지</title>
 
     <script type="text/javascript"> //자바스크립트를 쓴다는 것
-    $(document).ready(function(){
+    /*$(document).ready(function(){
         $("#userInfo").click(function(){ //버튼 이름이 userLoginSave
 
-            /*let params = $("#userInfo").serialize();
+            let params = $("#userInfo").serialize();
 
             $.ajax({
                 type: "POST"
@@ -30,9 +30,9 @@
                         alert("로그인에 실패하였습니다. 다시 시도해주세요.")
                     }
                 }
-            })*/
+            })
         })
-    })
+    })*/
     </script>
 
 </head>
@@ -54,11 +54,11 @@
                 </p>
                 <p>
                     <label>닉네임</label>
-<%--                    <input class="w3-input" type="text" id="nickname" name="nickname" value="${userNickname}">--%>
+                    <input class="w3-input" type="text" id="nickname" name="nickname" value="<%=user.getUserNickname()%>">
                 </p>
                 <p>
                     <label>성별</label>
-<%--                    <input class="w3-input" type="text" id="gender" name="gender" value="${userGender}">--%>
+                    <input class="w3-input" type="text" id="gender" name="gender" value="<%=user.getUserGender()%>">
                 </p>
                 <p class="w3-center">
                     <input type="button" onclick="location.href='/memberModify'" value="회원정보 수정">

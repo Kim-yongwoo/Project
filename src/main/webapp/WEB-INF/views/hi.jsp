@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	test
-
-	<form id="test" method="post">
-		<input type="button" onclick="location.href='/ediya'" value="test">
-</form>
+	test입니다
 
 </body>
 </html>

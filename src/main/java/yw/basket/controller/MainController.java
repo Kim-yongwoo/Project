@@ -35,11 +35,6 @@ public class MainController {
         return "match/match";
     }
 
-    //공지사항 이동
-    @RequestMapping(value = "/board")
-    public String userBoard() throws Exception {
-        return "board/board";
-    }
 
     //마이페이지 이동
     @RequestMapping(value = "/mypage")
@@ -53,9 +48,4 @@ public class MainController {
         return "/user/mypage";
     }
 
-    //test
-    @RequestMapping(value = "/test")
-    public String test() throws Exception {
-        return "/test";
-    }
 }

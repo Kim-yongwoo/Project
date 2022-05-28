@@ -23,4 +23,13 @@ public interface IUserMapper {
 
     // 로그인
     UserDTO loginProc(UserDTO userDTO) throws Exception;
+
+    // 사용자 정보 by userId
+
+    UserDTO getUserInfo(UserDTO userDTO) throws Exception;
+
+
+    // coffee 테스트
+    String coffee() throws Exception;
+
 }
