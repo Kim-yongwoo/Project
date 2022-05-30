@@ -26,7 +26,7 @@ public class MainController {
     @GetMapping(value = "/main")
     public String main(HttpSession session) {
         session.setAttribute("userInfo", "Test");
-        return "main";
+        return "index";
     }
 
     //매칭페이지 이동
@@ -47,5 +47,6 @@ public class MainController {
         model.addAttribute("userName", userDTO1);
         return "/user/mypage";
     }
+
 
 }

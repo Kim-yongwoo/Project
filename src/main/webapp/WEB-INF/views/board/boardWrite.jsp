@@ -12,19 +12,20 @@
 <div class="container">
     <h2>게시판 등록</h2>
     <form id="frm" name="frm" method="post" action="/insertBoard">
-    <table class="board_detail">
-        <tr>
-            <td>제목</td>
-            <td><input type="text" id="title" name="title"></td>
-            // 입력된 내용들은 name을 키로 이용해 서버에 전송됨
-        </tr>
-        <tr>
-            <td colspan="2">
-                <textarea id="contents" name="contents"></textarea>
-            </td>
-        </tr>
-    </table>
-    <input type="submit" id="submit" value="저장" class="btn">
+        <table class="board_detail">
+            <tr>
+                <td>제목</td>
+                <td><input type="text" id="title" name="boardTitle"></td>
+                // 입력된 내용들은 name을 키로 이용해 서버에 전송됨
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="contents" name="boardContents"></textarea>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" id="submit" value="저장" class="btn" href="#" onclick="alert('작성 완료')">
+
     </form>
 </div>
 </body>

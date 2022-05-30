@@ -9,7 +9,7 @@ import yw.basket.service.IBoardService;
 
 import java.util.List;
 
-@Service
+@Service("BoardService")
 public class BoardService implements IBoardService {
 
     private final IBoardMapper boardMapper;
@@ -17,16 +17,48 @@ public class BoardService implements IBoardService {
     @Autowired
     public BoardService(IBoardMapper boardMapper) {
         this.boardMapper = boardMapper;
+
+
     } // 매퍼클래스를 위에 private final 변수에 넣어준다(위에껀 null과 같은상태인데 이 값을 넣어줌으로써 mapper사용)
 
     @Override
     public List<BoardDTO> selectBoardList() throws Exception {
-
         return boardMapper.selectBoardList();
+
     }
 
     @Override
-    public void insertBoard(BoardDTO board) throws Exception {
-        boardMapper.insertBoard(board);
+    public void insertBoard(BoardDTO boardDTO) throws Exception {
+        boardMapper.insertBoard(boardDTO);
     }
+
+
+    /*public List<BoardDTO> selectBoardList(BoardDTO boardDTO) throws Exception {
+        return boardMapper.selectBoardList(boardDTO);
+    }
+
+    @Override
+    public void insertBoard(BoardDTO boardDTO) throws Exception {
+        boardMapper.insertBoard(boardDTO);
+    }
+
+    @Override
+    public void updateBoard(BoardDTO boardDTO) throws Exception {
+        boardMapper.updateBoard(boardDTO);
+    }
+
+    @Override
+    public void deleteBoard(BoardDTO boardDTO) throws Exception {
+        boardMapper.deleteBoard(boardDTO);
+    }
+
+    @Override
+    public BoardDTO selectBoardByCode(BoardDTO boardDTO) throws Exception {
+
+        BoardDTO resultDTO = boardMapper.selectBoardByCode(boardDTO);
+
+        return resultDTO;
+    }*/
+
+
 }

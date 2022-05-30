@@ -22,7 +22,7 @@
             $("#writeBtn").click(function(){
                 location.href ="write";
             })
-            $.ajax({url: "boardList", success: function(result){
+            $.ajax({url: "/boardList", success: function(result){
                     var html = "";
                     result.forEach(function(item){
                         html+= "<tr> <td><a href = 'view?idx=" + item.idx + "'>" + item.title + "</a>"
@@ -31,10 +31,9 @@
                     $('#example').DataTable();
                 }});
             $("#deleteBtn").click(function(){
-                location.href ="write";
+                location.href ="/write";
             })
         } );
-
     </script>
 </head>
 <body>

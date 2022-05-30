@@ -1,4 +1,14 @@
+<%@ page import="java.util.List" %>
+<%@ page import="yw.basket.dto.BoardDTO" %>
+<%@ page import="java.util.LinkedList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    List<BoardDTO> boardDTOList = (List<BoardDTO>) request.getAttribute("boardList");
+
+    if (boardDTOList == null){
+        boardDTOList = new LinkedList<BoardDTO>();
+    }
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,9 +30,23 @@
             <th scope="col">등록일자</th>
             <th scope="col">작성자</th>
         </tr>
+        <%
+            for (BoardDTO boardDTO : boardDTOList) {
+        %>
+        <tr>
+            <th><%=boardDTO.getBoardSeq()%></th>
+            <th><%=boardDTO.getBoardTitle()%></th>
+            <th><%=boardDTO.getBoardRegDate()%></th>
+            <th><%=boardDTO.getBoardRegSeq()%></th>
+        </tr>
+        <%
+            }
+        %>
+
         </thead>
 
     </table>
+    <input type="button" onclick="location.href='/boardWrite'" value="글쓰기">
 
 </div>
 </body>
