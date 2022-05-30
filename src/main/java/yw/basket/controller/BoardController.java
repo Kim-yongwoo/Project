@@ -1,9 +1,12 @@
 package yw.basket.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import yw.basket.dto.BoardDTO;
@@ -15,6 +18,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
+@Slf4j
 @Controller
 public class BoardController {
 
@@ -22,25 +28,52 @@ public class BoardController {
     @Resource(name = "BoardService")
     private IBoardService boardService;
 
+
+    //게시글 리스트 화면
     @RequestMapping("/boardList")
     public String boardList(Model model) throws Exception {
-        List<BoardDTO> list = boardService.selectBoardList();
 
-        model.addAttribute("list", list);
+        List<BoardDTO> boardList = boardService.selectBoardList();
+
+        model.addAttribute("boardList", boardList);
+        log.info("리스트ㅡㅡㅡ" + boardList);
         return "/board/boardList";
 
     }
 
-    @RequestMapping("/boardWrite")		//게시글 작성 화면 호출
+    //게시글 작성 화면
+    @RequestMapping("/boardWrite")
     public String BoardWrite() throws Exception{
         return "/board/boardWrite";
     }
 
+    //게시글 등록 화면
     @RequestMapping("/insertBoard")		//작성된 게시글 등록 기능 메소드, html의 form 태그 action에서 입력한 주소
-    public String insertBoard(BoardDTO boardDTO) throws Exception{
+    public String insertBoard(BoardDTO boardDTO, ModelMap model) throws Exception{
+        log.info("board Title : " + boardDTO.getBoardTitle());
+        log.info("boardContents : " + boardDTO.getBoardContents());
         boardService.insertBoard(boardDTO);
-        return "/board/boardList";	//게시글 리스트로 이동
+        log.info(String.valueOf(boardDTO));
+
+        model.addAttribute("msg", "글 등록 완료");
+        model.addAttribute("url", "/boardList");
+
+        return "/red";	//게시글 리스트로 이동
     }
+
+    //게시글 조회 화면
+
+    /*//게시글 수정 화면
+    @RequestMapping("/updateBoard")
+    public String updateBoard(BoardDTO boardDTO) throws Exception {
+
+    }*/
+
+    //게시글 삭제 화면
+    /*@RequestMapping("/deleteBoard")
+    public String deleteBoard(BoardDTO boardDTO) throws Exception {
+
+    }*/
 
 
    /* *//**
