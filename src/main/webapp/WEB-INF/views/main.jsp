@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>메인</title>
+	<%@include file="header.jsp"%>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#matchLocM").change(function(){
@@ -48,10 +44,15 @@
 			})
 		})
 	</script>
+
+
+
 </head>
-<body>
+<body><!-- Responsive navbar-->
+<%@include file="headerMenu.jsp"%>
+
 <div class="container">
-	<h3>Basket Life</h3>
+
 	<ul class="nav nav-tabs">
 		<li class="active">
 			<a href="#">Home</a>
@@ -88,8 +89,32 @@
 
 
 		<input type="date" id="matchDate" name="matchDate">
-		<input type="button" onclick="location.href='/matchSave'" value="매칭시작">
+		<input type="button" onclick="location.href='/matchReg'" value="매칭시작">
 	</form>
 </div>
+</header>
+<!-- Content section-->
+<section class="py-5">
+	<div class="container my-5">
+		<div class="row justify-content-center">
+
+
+		</div>
+	</div>
+</section>
+<!-- Image element - set the background image for the header in the line below-->
+<!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
+<div style="height: 20rem"></div>
+</div>
+<!-- Content section-->
+<section class="py-5">
+	<div class="container my-5">
+		<div class="row justify-content-center">
+
+		</div>
+	</div>
+</section>
+
+<%@include file="footer.jsp"%>
 </body>
 </html>

@@ -17,5 +17,6 @@ public class BoardDTO {
    private int boardRegSeq;
    private Timestamp boardMdfDate;
    private int boardMdfSeq;
+   private String userName;
 
 }

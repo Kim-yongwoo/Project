@@ -15,12 +15,11 @@
         <table class="board_detail">
             <tr>
                 <td>제목</td>
-                <td><input type="text" id="title" name="boardTitle"></td>
-                // 입력된 내용들은 name을 키로 이용해 서버에 전송됨
+                <td><input type="text" id="boardTitle" name="boardTitle"></td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <textarea id="contents" name="boardContents"></textarea>
+                    <textarea id="boardContents" name="boardContents"></textarea>
                 </td>
             </tr>
         </table>

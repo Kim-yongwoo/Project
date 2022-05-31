@@ -7,12 +7,15 @@
 
 	<!--<select> 태그를 이용하여 select 쿼리임을 나타냄. 앞서 mapper에서 말했던 메소드의 이름은 select 쿼리의 id값과 같아야함.-->
 	<select id="selectBoardList" resultType="BoardDTO">
-		SELECT
-			  BOARD_SEQ AS 'boardSeq'
-			 ,BOARD_TITLE AS 'boardTitle'
-			 ,BOARD_REG_DATE AS 'boardRegDate'
-			 ,BOARD_REG_SEQ AS 'boardRegSeq'
-		FROM TB_BOARD ORDER BY BOARD_SEQ ASC
+		SELECT TB.BOARD_SEQ
+			 , TB.BOARD_TITLE
+			 , TB.BOARD_REG_DATE
+			 , TB.BOARD_REG_SEQ
+			 , TU.USER_NAME
+		FROM TB_BOARD AS TB
+  INNER JOIN TB_USER AS TU
+		  ON TU.USER_SEQ = TB.BOARD_REG_SEQ
+    ORDER BY TB.BOARD_SEQ DESC
 
 	</select>
 

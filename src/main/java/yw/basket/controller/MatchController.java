@@ -20,9 +20,9 @@ public class MatchController {
     }
 
     //매칭 시작
-    @RequestMapping(value = "/matchSave")
+    @RequestMapping(value = "/matchReg")
     public String matchSave() throws Exception {
-        return "match/matchSave";
+        return "match/matchReg";
     }
 
 

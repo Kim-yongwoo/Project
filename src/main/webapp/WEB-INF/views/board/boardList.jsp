@@ -37,7 +37,7 @@
             <th><%=boardDTO.getBoardSeq()%></th>
             <th><%=boardDTO.getBoardTitle()%></th>
             <th><%=boardDTO.getBoardRegDate()%></th>
-            <th><%=boardDTO.getBoardRegSeq()%></th>
+            <th><%=boardDTO.getUserName()%></th>
         </tr>
         <%
             }

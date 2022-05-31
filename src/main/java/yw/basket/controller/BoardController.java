@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import yw.basket.dto.BoardDTO;
+import yw.basket.dto.UserDTO;
 import yw.basket.service.IBoardService;
 import yw.basket.service.IUserService;
 import yw.basket.service.impl.BoardService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
@@ -49,11 +51,17 @@ public class BoardController {
 
     //게시글 등록 화면
     @RequestMapping("/insertBoard")		//작성된 게시글 등록 기능 메소드, html의 form 태그 action에서 입력한 주소
-    public String insertBoard(BoardDTO boardDTO, ModelMap model) throws Exception{
+    public String insertBoard(BoardDTO boardDTO, ModelMap model, HttpSession session) throws Exception{
         log.info("board Title : " + boardDTO.getBoardTitle());
         log.info("boardContents : " + boardDTO.getBoardContents());
+
+        UserDTO user = (UserDTO) session.getAttribute("user");
+
+        boardDTO.setBoardRegSeq(user.getUserSeq());
         boardService.insertBoard(boardDTO);
+
         log.info(String.valueOf(boardDTO));
+        log.info("<<<<<<<board boardRegSeq : " + boardDTO.getBoardRegSeq());
 
         model.addAttribute("msg", "글 등록 완료");
         model.addAttribute("url", "/boardList");
