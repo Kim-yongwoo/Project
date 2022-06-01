@@ -69,28 +69,7 @@
 		<li><a href="/boardList">공지사항</a></li>
 	</ul>
 
-	<h4>Match</h4>
-	<form id="matchForm" >
-		<select id="matchLocM" name="matchLocM">
-			<option value="">지역선택</option>
-			<option value="서울">서울</option>
-			<option value="경기">경기</option>
-		</select>
-		<select id="matchLocD" name="matchLocD">
-			<option value="">지역상세선택</option>
-		</select>
-
-		<select name="userLevel">
-			<option value="">레벨선택</option>
-			<option value="비기너">비기너</option>
-			<option value="아마추어">아마추어</option>
-			<option value="일반">일반</option>
-		</select>
-
-
-		<input type="date" id="matchDate" name="matchDate">
-		<input type="button" onclick="location.href='/matchReg'" value="매칭시작">
-	</form>
+	<input type="button" onclick="location.href='/matchReg'" value="매칭시작">
 </div>
 </header>
 <!-- Content section-->

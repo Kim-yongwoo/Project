@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import yw.basket.dto.MatchDTO;
 import yw.basket.service.IMatchService;
 
 
@@ -21,7 +22,8 @@ public class MatchController {
 
     //매칭 시작
     @RequestMapping(value = "/matchReg")
-    public String matchSave() throws Exception {
+    public String matchSave(MatchDTO matchDTO) throws Exception {
+
         return "match/matchReg";
     }
 

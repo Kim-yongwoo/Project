@@ -1,24 +1,67 @@
+<%@ page import="yw.basket.dto.UserDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<%
+    UserDTO userinfo = (UserDTO) request.getAttribute("userinfo");
+%>
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>회원정보 수정</title>
+    <%@include file="../header.jsp"%>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#updateUserInfo").click(function(){
+
+                let params = $("#updateUserInfoForm").serialize();
+
+                $.ajax({
+                    type: "POST"
+                    , url: "/memberModifySave"
+                    , data: params
+                    , success: function(res) {
+                        if (res == 1) {
+                            alert("회원정보가 수정되었습니다.");
+                            location.href = "/mypage";
+                        } else {
+                            alert("다시 시도해주세요")
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 
 </head>
 <body>
 <h2>[회원정보 수정]</h2>
-<form id="memberModify">
-    <div>이름<input type="text" name="userName" id="userName" value="${modifyName}" ></div>
-    <div>이메일<input type="text" name="userEmail" id="userEmail" value="${modifyEmail}"></div>
-    <div>닉네임<input type="text" name="userNickname" id="userNickname" value="${modifyNickname}"></div>
-    <div>성별<input type="text" name="userGender" id="userGender" value="${modifyGender}"></div>
+<form id="updateUserInfoForm" method="post">
+    <p>
+        <label>이름 : </label>
+        <input class="w3-input" type="text" id="userName" name="userName" value="<%=userinfo.getUserName()%>">
+    </p>
+    <p>
+        <label>이메일</label>
+        <input class="w3-input" type="text" id="userEmail" name="userEmail" value="<%=userinfo.getUserEmail()%>">
+    </p>
+    <p>
+        <label>닉네임</label>
+        <input class="w3-input" type="text" id="userNickname" name="userNickname" value="<%=userinfo.getUserNickname()%>">
+    </p>
+    <p>
+        <label>성별</label>
+        <input class="w3-input" type="text" id="userGender" name="userGender" value="<%=userinfo.getUserGender()%>">
+    </p>
 
-    <button type="submit" id="updateUserInfo" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">수정완료</button>
+    <p>
+        <label>레벨</label>
+        <input class="w3-input" type="text" id="userLevel" name="userLevel" value="<%=userinfo.getUserLevel()%>">
+    </p>
+
+    <p class="w3-center">
+
+        <input type="button" value="수정완료" id="updateUserInfo">
+    </p>
 
 </form>
 

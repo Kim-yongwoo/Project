@@ -128,13 +128,38 @@ public class UserController {
         return "/user/updatePw";
     }
 
-
     //회원 정보 수정
-    @RequestMapping(value = "/memberModify")
-    public String memberModify(UserDTO userDTO) throws Exception {
+    @GetMapping(value = "/memberModify")
+    public String memberModify(Model model, HttpSession session) throws Exception {
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        UserDTO userinfo = userService.getUserInfo(user);
 
+        model.addAttribute("userinfo", userinfo);
         return "/user/memberModify";
     }
+
+    //회원 정보 수정
+    @PostMapping(value = "/memberModifySave")
+    @ResponseBody
+    public int memberModifySave(UserDTO userDTO, HttpSession session) throws Exception {
+
+        UserDTO user = (UserDTO) session.getAttribute("user");
+
+        userDTO.setUserSeq(user.getUserSeq());
+        return userService.memberModifySave(userDTO);
+    }
+    //마이페이지 이동
+    @RequestMapping(value = "/mypage")
+    public String usermypage(Model model, HttpSession session) throws Exception {
+
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        UserDTO userinfo = userService.getUserInfo(user);
+
+        model.addAttribute("userinfo", userinfo);
+        return "/user/mypage";
+    }
+
+
 
     /*@RequestMapping(value = "/mypage")
     public String mypage(Model model, UserDTO userDTO, HttpServletRequest request) throws Exception {

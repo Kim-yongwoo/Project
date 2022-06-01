@@ -27,7 +27,7 @@
         , #{userPw}
         , #{userName}
         , #{userEmail}
-        , 0
+        , #{userLevel}
         , #{userAge}
         , #{userGender}
         , #{userNickname}
@@ -62,5 +62,18 @@
         WHERE USER_ID = #{userId}
     </select>
 
+    <!--회원정보 수정 -->
+    <update id="memberModifySave" parameterType="UserDTO">
+        UPDATE
+            TB_USER
+        SET
+              USER_NAME = #{userName}
+            , USER_EMAIL = #{userEmail}
+            , USER_NICKNAME = #{userNickname}
+            , USER_GENDER = #{userGender}
+            , USER_LEVEL = #{userLevel}
+        WHERE USER_SEQ = #{userSeq}
 
+
+    </update>
 </mapper>

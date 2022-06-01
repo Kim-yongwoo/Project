@@ -15,8 +15,6 @@ public interface IUserMapper {
     // 로그인 체크
     int loginCheck(UserDTO userDTO) throws Exception;
 
-    //회원정보 조회
-    UserDTO memberModify(UserDTO userDTO) throws Exception;
 
     //test
     String test() throws Exception;
@@ -31,5 +29,8 @@ public interface IUserMapper {
 
     // coffee 테스트
     String coffee() throws Exception;
+
+    //회원정보 수정
+    int memberModifySave(UserDTO userDTO) throws Exception;
 
 }

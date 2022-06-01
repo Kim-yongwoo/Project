@@ -38,7 +38,7 @@
 <form id="signUpForm">
         <h1>회원가입</h1>
         <div class="form-group"> <%--label 과 input태그를 정렬해주기 위해 form-group 사용--%>
-            <label for="userId">아이디</label>  <%--label --%>
+            <label for="userId">아이디</label>
             <input type="text" class="form-control" id="userId" name="userId">
         </div><br>
         <div class="form-group">
@@ -59,13 +59,26 @@
         </div><br>
         <div class="form-group">
             <label for="userGender">성별</label>
-            <input type="text" class="form-control" id="userGender" name="userGender">
+            <select id="userGender" class="form-control" name="userGender">
+                <option value="남자">남자</option>
+                <option value="여자">여자</option>
+            </select>
+
         </div><br>
         <div class="form-group">
             <label for="userNickname">닉네임</label>
             <input type="text" class="form-control" id="userNickname" name="userNickname">
         </div>
-        <br><br>
+        <br>
+         <div class="form-group">
+             <label for="userLevel">레벨</label>
+             <select id="userLevel" class="form-control" name="userLevel">
+                 <option value="비기너">비기너</option>
+                 <option value="아마추어">아마추어</option>
+                 <option value="일반">일반</option>
+            </select>
+
+         </div>
         <input type="button" value="회원가입" id="userInfoSave">
     </div>
 </form>

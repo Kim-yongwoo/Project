@@ -12,8 +12,6 @@ public interface IUserService {
     /*로그인*/
     public int main(UserDTO userDTO) throws Exception;
 
-    public UserDTO memberModify(UserDTO userDTO) throws Exception;
-
 
     public String test() throws Exception;
 
@@ -24,4 +22,7 @@ public interface IUserService {
     public String coffee() throws Exception;
 
     UserDTO getUserInfo(UserDTO userDTO) throws Exception;
+
+    //회원정보 수정
+    int memberModifySave(UserDTO userDTO) throws Exception;
 }

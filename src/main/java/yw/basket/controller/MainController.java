@@ -36,17 +36,4 @@ public class MainController {
     }
 
 
-    //마이페이지 이동
-    @RequestMapping(value = "/mypage")
-    public String userMypage(Model model, UserDTO userDTO, HttpSession session) throws Exception {
-        // 서비스 호출하기 with session      UserDTO user = userService.
-
-        UserDTO userDTO1 = new UserDTO();
-        userDTO1.setUserEmail("email");
-
-        model.addAttribute("userName", userDTO1);
-        return "/user/mypage";
-    }
-
-
 }

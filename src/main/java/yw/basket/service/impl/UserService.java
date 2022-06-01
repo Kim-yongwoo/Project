@@ -23,6 +23,7 @@ public class UserService implements IUserService {
         return userMapper.loginCheck(userDTO);
     }
 // 1. userdto로 부터 받아온 정보를 DB에 저장한다
+    //회원가입
     @Override
     public int signUp(UserDTO userDTO) throws Exception {
         return userMapper.insertUserInfo(userDTO);
@@ -33,10 +34,6 @@ public class UserService implements IUserService {
         return userMapper.getUserLoginCheck(userDTO);
     }
 
-    @Override
-    public UserDTO memberModify(UserDTO userDTO) throws Exception {
-        return userMapper.memberModify(userDTO);
-    }
 
     @Override
     public UserDTO loginProc(UserDTO userDTO) throws Exception {

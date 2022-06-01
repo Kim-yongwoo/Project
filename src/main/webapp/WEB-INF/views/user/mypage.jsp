@@ -53,12 +53,17 @@
                     <input class="w3-input" type="text" id="email" name="email" value="<%=Name.getUserEmail()%>">
                 </p>
                 <p>
-                    <label>닉네임</label>
-                    <input class="w3-input" type="text" id="nickname" name="nickname" value="<%=user.getUserNickname()%>">
+                    <label>닉네임 : </label>
+                    <span><%=userinfo.getUserNickname()%></span>
                 </p>
                 <p>
-                    <label>성별</label>
-                    <input class="w3-input" type="text" id="gender" name="gender" value="<%=user.getUserGender()%>">
+                    <label>성별 : </label>
+                    <span><%=userinfo.getUserGender()%></span>
+                </p>
+
+                <p>
+                    <label>레벨 : </label>
+                    <span><%=userinfo.getUserLevel()%></span>
                 </p>
                 <p class="w3-center">
                     <input type="button" onclick="location.href='/memberModify'" value="회원정보 수정">
