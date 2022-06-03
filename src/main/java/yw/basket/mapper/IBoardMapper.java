@@ -16,7 +16,18 @@ public interface IBoardMapper {
     //게시판 쓰기
     void insertBoard(BoardDTO boardDTO) throws Exception;
 
+    //게시글 조회
+    BoardDTO selectBoardDetail(BoardDTO boardDTO) throws Exception;
+
+    //게시글 수정
+    void boardUpdate(BoardDTO boardDTO) throws Exception;
+
+    //게시글 삭제
+    void boardDelete(BoardDTO boardDTO) throws Exception;
+
 }
+
+
     /**
      * 게시물 리스트 조회
      * @param boardDTO

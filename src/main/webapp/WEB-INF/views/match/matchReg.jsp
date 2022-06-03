@@ -1,4 +1,7 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+
 <html>
 <head>
     <%@include file="../header.jsp"%>
@@ -41,13 +44,34 @@
                     $("#matchLocD").append(option);
                 }
             })
+
+            $("#matchRegSave").click(function(){
+
+                let params = $("#matchRegSaveForm").serialize();
+
+                $.ajax({
+                    type: "POST"
+                    , url: "/matchRegSave"
+                    , data: params
+                    , success: function(res) {
+                        if (res == 1) {
+                            alert("매치가 생성되었습니다");
+                            location.href = "/main";
+                        } else {
+                            alert("다시 시도해주세요")
+                        }
+                    }
+                })
+            })
         })
+
+
     </script>
 </head>
 <body>
 <%@include file="../headerMenu.jsp"%>
     <h1>매치생성</h1>
-    <form id="matchReg" action="/matchReg" method="post">
+    <form id="matchRegSaveForm" method="post">
         <!-- 경기지역 -->
         <div class="form-group">
             <label for="matchLocM">경기지역</label>
@@ -96,10 +120,11 @@
                 <option value="여자">여자</option>
             </select>
 
-            <!--
-            <input type="submit" onclick="location.href='/matchReg'" value="매칭시작">
-            -->
-        </div><br>
+
+            <input type="button" id="matchRegSave" value="매칭시작">
+
+        </div>
+
     </form>
 
 <%@include file="../footer.jsp"%>

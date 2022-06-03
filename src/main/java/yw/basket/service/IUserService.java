@@ -25,4 +25,7 @@ public interface IUserService {
 
     //회원정보 수정
     int memberModifySave(UserDTO userDTO) throws Exception;
+
+    //비밀번호 변경
+    int updatePwSave(UserDTO userDTO) throws Exception;
 }

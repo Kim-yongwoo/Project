@@ -11,6 +11,15 @@ public interface IBoardService {
     // 게시글을 등록하는 기능에 대한 서비스
     void insertBoard(BoardDTO boardDTO) throws Exception;
 
+    //게시글 상세
+    BoardDTO selectBoardDetail(BoardDTO boardDTO) throws Exception;
+
+    //게시글 수정
+    void boardUpdate(BoardDTO boardDTO) throws Exception;
+
+    //게시글 삭제
+    void boardDelete(BoardDTO boardDTO) throws Exception;
+
     /**
      * 게시물 리스트 조회
      * @param boardDTO

@@ -11,10 +11,7 @@
 <body>
     <h2>게시판 수정</h2>
 
-    <form action="/boardUpdate" method="post">
-
-
-
+    <form action="/board" method="post">
 
     </form>
 

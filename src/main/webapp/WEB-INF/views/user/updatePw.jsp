@@ -1,31 +1,63 @@
+<%@ page import="yw.basket.dto.UserDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%
+    UserDTO userinfo = (UserDTO) request.getAttribute("userinfo");
+%>
+
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>비밀번호 변경</title>
+    <%@include file="../header.jsp"%>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#updatePw").click(function(){
+
+                let params = $("#updatePwForm").serialize();
+
+                $.ajax({
+                    type: "POST"
+                    , url: "/updatePwSave"
+                    , data: params
+                    , success: function(res) {
+                        if (res == 1) {
+                            alert("비밀번호가 수정되었습니다.");
+                            location.href = "/mypage";
+                        } else {
+                            alert("다시 시도해주세요")
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 
 </head>
 <body>
-<form id="pwForm">
-    <input type="hidden" name="id" value="${ member.id }">
+<%@include file="../headerMenu.jsp"%>
+<form id="updatePwForm" method="post">
     <p>
         <label>현재 비밀번호</label>
-        <input class="w3-input" id="old_pw" name="old_pw" type="password" required>
+        <input class="w3-input" type="password" id="userPw" name="userPw" placeholder="">
     </p>
     <p>
-        <label>비밀번호 변경</label>
-        <input class="w3-input" id="pw" name="pw" type="password" required>
+        <label>신규 비밀번호 변경</label>
+        <input class="w3-input" type="password" id="userPwNew" name="userPwNew" placeholder="">
+    </p>
+    <p>
+        <label>신규 비밀번호 확인</label>
+        <input class="w3-input" type="password" id="userPwNewChk" name="userPwNewChk"placeholder="">
     </p>
     <p class="w3-center">
-        <button type="submit" id="updatePw" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">비밀번호 변경</button>
+        <input type="button" value="수정완료" id="updatePw">
     </p>
 </form>
-</div>
-</div>
-</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <input type="button" onclick="location.href='/mypage'" value="뒤로가기">
+
+<%@include file="../footer.jsp"%>
 </body>
 </html>

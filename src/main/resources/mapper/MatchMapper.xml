@@ -4,8 +4,31 @@
 <!-- JAVA와 연결할 Mapper 파일 설정 -->
 <mapper namespace="yw.basket.mapper.IMatchMapper">
 
-
-
-
-
+    <insert id="matchRegSave" parameterType="MatchDTO">
+    INSERT
+        INTO TB_MATCH
+    (
+     MATCH_LOC_M
+    ,MATCH_LOC_D
+    ,MATCH_GM_NAME
+    ,MATCH_GM_ADDR
+    ,MATCH_DATE
+    ,MATCH_TIME
+    ,MATCH_MEM
+    ,MATCH_GENDER
+    ,MATCH_REG_SEQ
+    )
+    VALUES
+    (
+      #{matchLocM}
+     ,#{matchLocD}
+     ,#{matchGmName}
+     ,#{matchGmAddr}
+     ,#{matchDate}
+     ,#{matchTime}
+     ,#{matchMem}
+     ,#{matchGender}
+     ,#{matchRegSeq}
+    )
+    </insert>
 </mapper>

@@ -40,6 +40,59 @@
 	</insert>
 
 
+	<select id="selectBoardDetail" parameterType="BoardDTO" resultType="BoardDTO">
+
+		SELECT
+		      BOARD_SEQ
+			 ,BOARD_TITLE
+			 ,BOARD_CONTENTS
+			 ,BOARD_REG_SEQ
+			 ,BOARD_REG_DATE
+		FROM
+			TB_BOARD
+		WHERE
+			BOARD_SEQ = #{boardSeq}
+
+	</select>
+
+	<update id="boardUpdate" parameterType="BoardDTO">
+
+		UPDATE
+			TB_BOARD
+		SET
+			 BOARD_SEQ = #{boardSeq}
+			,BOARD_TITLE =  #{boardTitle}
+			,BOARD_CONTENTS = #{boardContents}
+			,BOARD_REG_SEQ = #{boardRegSeq}
+			,BOARD_MDF_DATE = NOW()
+		WHERE
+			BOARD_SEQ = #{boardSeq}
+
+
+	</update>
+
+	<delete id="boardDelete" parameterType="BoardDTO">
+
+		DELETE
+
+		FROM
+		TB_BOARD
+		WHERE
+		BOARD_SEQ = #{boardSeq}
+
+	</delete>
+
+
+
+<!--	/*DELETE
+	BOARD_SEQ = #{boardSeq}
+	,BOARD_MDF_DATE = NOW()
+	,BOARD_REG_SEQ = '37'
+	FROM
+	TB_BOARD
+	WHERE
+	BOARD_SEQ = #{boardSeq}*/-->
+
 <!--	<select id="selectBoardList" parameterType="BoardDTO" resultType="BoardDTO">-->
 <!--		SELECT *-->
 <!--		from-->

@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import yw.basket.dto.BoardDTO;
 import yw.basket.dto.UserDTO;
@@ -45,13 +43,13 @@ public class BoardController {
 
     //게시글 작성 화면
     @RequestMapping("/boardWrite")
-    public String BoardWrite() throws Exception{
+    public String BoardWrite() throws Exception {
         return "/board/boardWrite";
     }
 
     //게시글 등록 화면
-    @RequestMapping("/insertBoard")		//작성된 게시글 등록 기능 메소드, html의 form 태그 action에서 입력한 주소
-    public String insertBoard(BoardDTO boardDTO, ModelMap model, HttpSession session) throws Exception{
+    @RequestMapping("/insertBoard")        //작성된 게시글 등록 기능 메소드, html의 form 태그 action에서 입력한 주소
+    public String insertBoard(BoardDTO boardDTO, ModelMap model, HttpSession session) throws Exception {
         log.info("board Title : " + boardDTO.getBoardTitle());
         log.info("boardContents : " + boardDTO.getBoardContents());
 
@@ -66,116 +64,95 @@ public class BoardController {
         model.addAttribute("msg", "글 등록 완료");
         model.addAttribute("url", "/boardList");
 
-        return "/red";	//게시글 리스트로 이동
+        return "/red";    //게시글 리스트로 이동
     }
 
     //게시글 조회 화면
+    @RequestMapping("/boardDetail/{boardSeq}")
+    public ModelAndView openBoardDetail(BoardDTO boardDTO, @PathVariable int boardSeq, ModelMap model) throws Exception {
 
-    /*//게시글 수정 화면
-    @RequestMapping("/updateBoard")
-    public String updateBoard(BoardDTO boardDTO) throws Exception {
+        boardDTO.setBoardSeq(boardSeq);
+
+        ModelAndView mv = new ModelAndView("/board/boardDetail");
+
+        BoardDTO board = boardService.selectBoardDetail(boardDTO);
+
+        log.info("title : " + board.getBoardTitle());
+        log.info("getBoardContents : " + board.getBoardContents());
+        log.info("BOARD_REG_SEQ : " + board.getBoardRegSeq());
+        log.info("BOARD_REG_DATE : " + board.getBoardRegDate());
+
+        mv.addObject("board", board);
+        model.addAttribute("boardInfo", board);
+
+        return mv;
+    }
+
+
+    @RequestMapping("/boardUpdate") // 프론트에서 백으로 데이터를 전송할때 사용되는 객체 => servletrequest
+    public String boardUpdate(HttpServletRequest request, HttpSession session) throws Exception {
+
+        BoardDTO pDTO = new BoardDTO();
+
+        //시퀀스 ,, 제목, 내용 get set으로 가져오기
+        String boardSeq = request.getParameter("boardSeq");
+        String boardTitle = request.getParameter("boardTitle");
+        String boardContents = request.getParameter("boardContents");
+
+        log.info(boardSeq);
+        log.info(boardTitle);
+        log.info(boardContents);
+
+        //시퀀스 string에서 int값으로 변환
+        pDTO.setBoardSeq(Integer.parseInt(boardSeq));
+        pDTO.setBoardTitle(boardTitle);
+        pDTO.setBoardContents(boardContents);
+
+
+        UserDTO userInfo = (UserDTO) session.getAttribute("user");
+
+        int userSeq = userInfo.getUserSeq();
+
+        log.info(Integer.toString(userSeq));
+        pDTO.setBoardRegSeq(userSeq);
+
+        boardService.boardUpdate(pDTO);
+
+        return "redirect:/boardList";
+    }
+
+    @RequestMapping("/boardDelete")
+    public String boardDelete(HttpServletRequest request, HttpSession session) throws Exception {
+        BoardDTO pDTO = new BoardDTO();
+        pDTO.setBoardSeq(Integer.parseInt(request.getParameter("boardSeq")));
+        boardService.boardDelete(pDTO);
+        return "redirect:/boardList";
+    }
+
+
+//게시글 수정폼
+    /*@RequestMapping(value = "/boardUpdateForm")
+    public String boardUpdateForm(@RequestParam BoardDTO boardDTO, Model model) throws Exception {
+
+        BoardDTO data = boardService.boardUpdate(boardDTO);
+        model.addAttribute("data", data);
+        return "/boardUpdate";
 
     }*/
-
-    //게시글 삭제 화면
-    /*@RequestMapping("/deleteBoard")
-    public String deleteBoard(BoardDTO boardDTO) throws Exception {
-
-    }*/
-
-
-   /* *//**
-     * 게시판 조회
-     * @param boardDTO
-     * @param model
-     * @return
-     * @throws Exception
-     *//*
-    @RequestMapping(value="/boardList")
-    public String boardList(@ModelAttribute("boarDTO") BoardDTO boardDTO, Model model) throws Exception{
-
-        List<BoardDTO> list = boardService.selectBoardList(boardDTO);
-
-        model.addAttribute("list", list);
-
-        return "board/boardList";
-    }
-
-    *//**
-     * 글쓰기 폼
-     * @return
-     * @throws Exception
-     *//*
-    @RequestMapping(value="/writeForm")
-    public String writeForm() throws Exception{
-
-        return "/board/writeForm";
-    }
-
-    *//**
-     * 게시글 등록
-     * @param boardDTO
-     * @param model
-     * @return
-     * @throws Exception
-     *//*
-    @RequestMapping(value="/write")
-    public String write(@ModelAttribute("boardDTO") BoardDTO boardDTO, Model model) throws Exception{
-
-        boardService.insertBoard(boardDTO);
-
-        return "redirect:/board/boardList";
-    }
-
-    *//**
-     * 게시글 조회
-     * @param boardDTO
-     * @param model
-     * @param request
-     * @return
-     * @throws Exception
-     *//*
-    @RequestMapping(value="/viewContent")
-    public String viewForm(@ModelAttribute("boardDTO") BoardDTO boardDTO, Model model, HttpServletRequest request) throws Exception{
-
-        int code = Integer.parseInt(request.getParameter("code"));
-        boardDTO.setBoardCode(code);
-
-        BoardDTO resultDTO = boardService.selectBoardByCode(boardDTO);
-
-        model.addAttribute("result", resultDTO);
-
-        return "board/viewForm";
-    }
-
-    *//**
-     * 게시글 수정
-     * @param boardDTO
-     * @param model
-     * @return
-     * @throws Exception
-     *//*
-    @RequestMapping(value="/updateBoard")
-    public String updateBoard(@ModelAttribute("boardDTO") BoardDTO boardDTO, Model model) throws Exception{
-
-        try{
-
-            boardService.updateBoard(boardDTO);
-
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return "redirect:/board/boardList";
-
-    }*/
-
-
-
 
 
 }
 
+
+
+    /*//게시글 수정 화면
+    @RequestMapping("/boardUpdate")
+    public String boardUpdate(BoardDTO boardDTO) throws Exception {
+
+        return "/board/boardDetail";
+
+}
+*/
 
 
 

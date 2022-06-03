@@ -9,6 +9,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <%@include file="../header.jsp"%>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>마이페이지</title>
 
@@ -37,6 +38,7 @@
 
 </head>
 <body>
+<%@include file="../headerMenu.jsp"%>
 <div class="w3-content w3-container w3-margin-top"></div>
     <div class="w3-container w3-card-4"></div>
         <div class="w3-center w3-large w3-margin-top">
@@ -72,11 +74,12 @@
             </form>
         </div>
 
-            <br />
+            <br/>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 <input type="button" onclick="location.href='/main'" value="뒤로가기">
 </div>
 
+<%@include file="../footer.jsp"%>
 </body>
 </html>

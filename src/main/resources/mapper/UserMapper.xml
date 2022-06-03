@@ -19,6 +19,7 @@
         , USER_NICKNAME
         , USER_STATUS
         , JOIN_DT
+        , USER_PW_NEW
         )
         VALUES
         (
@@ -33,6 +34,7 @@
         , #{userNickname}
         , 'Y'
         , NOW()
+        , #{userPwNew}
         )
 
     </insert>
@@ -74,6 +76,15 @@
             , USER_LEVEL = #{userLevel}
         WHERE USER_SEQ = #{userSeq}
 
+
+    </update>
+
+    <update id="updatePwSave" parameterType="UserDTO">
+        UPDATE
+            TB_USER
+        SET
+            USER_PW = #{userPwNew}
+        WHERE USER_SEQ = #{userSeq}
 
     </update>
 </mapper>

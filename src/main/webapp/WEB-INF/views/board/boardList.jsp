@@ -35,14 +35,13 @@
         %>
         <tr>
             <th><%=boardDTO.getBoardSeq()%></th>
-            <th><%=boardDTO.getBoardTitle()%></th>
+            <th><a href="/boardDetail/<%=boardDTO.getBoardSeq()%>"><%=boardDTO.getBoardTitle()%></a></th>
             <th><%=boardDTO.getBoardRegDate()%></th>
             <th><%=boardDTO.getUserName()%></th>
         </tr>
         <%
             }
         %>
-
         </thead>
 
     </table>

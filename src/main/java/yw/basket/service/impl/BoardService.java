@@ -32,6 +32,27 @@ public class BoardService implements IBoardService {
         boardMapper.insertBoard(boardDTO);
     }
 
+    // 게시글 상세
+    @Override
+    public BoardDTO selectBoardDetail(BoardDTO boardDTO) throws Exception {
+        return boardMapper.selectBoardDetail(boardDTO);
+
+    }
+
+    @Override
+    public void boardUpdate(BoardDTO boardDTO) throws Exception {
+        boardMapper.boardUpdate(boardDTO);
+
+    }
+
+    @Override
+    public void boardDelete(BoardDTO boardDTO) throws Exception {
+        boardMapper.boardDelete(boardDTO);
+    }
+
+}
+
+
 
     /*public List<BoardDTO> selectBoardList(BoardDTO boardDTO) throws Exception {
         return boardMapper.selectBoardList(boardDTO);
@@ -61,4 +82,4 @@ public class BoardService implements IBoardService {
     }*/
 
 
-}
+

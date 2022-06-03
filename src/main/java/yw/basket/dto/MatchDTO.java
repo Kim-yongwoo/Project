@@ -4,6 +4,7 @@ package yw.basket.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Getter

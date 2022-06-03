@@ -122,11 +122,27 @@ public class UserController {
         return userService.signUp(userDTO);
     }
 
-    //비밀번호 변경
+    //비밀번호 변경 화면
     @RequestMapping(value = "/updatePw")
-    public String userUpdate() throws Exception {
+    public String updatePw(Model model, HttpSession session) throws Exception {
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        UserDTO userinfo = userService.getUserInfo(user);
+
+        model.addAttribute("userinfo", userinfo);
         return "/user/updatePw";
     }
+
+    //비밀번호 수정
+    @PostMapping(value = "/updatePwSave")
+    @ResponseBody
+    public int updatePwSave(UserDTO userDTO, HttpSession session) throws Exception {
+
+        UserDTO user = (UserDTO) session.getAttribute("user");
+
+        userDTO.setUserSeq(user.getUserSeq());
+        return userService.updatePwSave(userDTO);
+    }
+
 
     //회원 정보 수정
     @GetMapping(value = "/memberModify")
@@ -143,6 +159,8 @@ public class UserController {
     @ResponseBody
     public int memberModifySave(UserDTO userDTO, HttpSession session) throws Exception {
 
+        //session을 통해서 user에 값을 받고  여기 user에는 세션에서 받은 id와 seq가 있따
+        //getUserInfo 메소드에 user를 파라미터로 보내고 받아온 결과값을 userDTO에 담는다
         UserDTO user = (UserDTO) session.getAttribute("user");
 
         userDTO.setUserSeq(user.getUserSeq());
