@@ -19,7 +19,7 @@
 
                         if (res > 0) {
                             alert("환영합니다!");
-                            location.href = "/web";
+                            location.href = "/main";
                         } else {
                             alert("로그인에 실패하였습니다. 다시 시도해주세요.")
                         }

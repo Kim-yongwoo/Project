@@ -2,9 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%
-    String user_name = (String) session.getAttribute("userInfo");
-    UserDTO Name = (UserDTO) request.getAttribute("userName");
-
+    UserDTO userinfo = (UserDTO) request.getAttribute("userinfo");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -47,12 +45,12 @@
         <div>
             <form id="userInfo">
                 <p>
-                    <label>이름</label>
-                    <input class="w3-input" type="text" id="name" name="name" value="<%=user_name%>">
+                    <label>이름 : </label>
+                    <span><%=userinfo.getUserName()%></span>
                 </p>
                 <p>
-                    <label>이메일</label>
-                    <input class="w3-input" type="text" id="email" name="email" value="<%=Name.getUserEmail()%>">
+                    <label>이메일 : </label>
+                    <span><%=userinfo.getUserEmail()%></span>
                 </p>
                 <p>
                     <label>닉네임 : </label>

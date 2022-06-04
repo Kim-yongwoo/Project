@@ -1,4 +1,16 @@
+<%@ page import="yw.basket.dto.MatchDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.LinkedList" %>
+
+<%
+	List<MatchDTO> matchDTOList = (List<MatchDTO>) request.getAttribute("matchDTOList");
+
+	if (matchDTOList == null){
+		matchDTOList = new LinkedList<MatchDTO>();
+	}
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +54,26 @@
 					$("#matchLocD").append(option);
 				}
 			})
+
+			$("#getMatch").click(function(){
+
+				let params = $("#getMatchForm").serialize();
+
+				$.ajax({
+					type: "POST"
+					, url: "/getMatch"
+					, data: params
+					, success: function(res) {
+						if (res == 1) {
+							alert("test");
+							location.href = "/main";
+						} else {
+							alert("다시 시도해주세요")
+						}
+					}
+				})
+			})
+
 		})
 	</script>
 
@@ -71,6 +103,39 @@
 
 	<input type="button" onclick="location.href='/matchReg'" value="매칭시작">
 </div>
+
+<form id="getMatchForm" method="post">
+
+	<thead>
+	<tr>
+		<th scope="col">경기날짜</th>
+		<th scope="col">경기시간</th>
+		<th scope="col">지역상세</th>
+		<th scope="col">구장이름</th>
+		<th scope="col">구장주소</th>
+		<th scope="col">성별구분</th>
+		<th scope="col">등록자</th>
+	</tr>
+	<%
+		for (MatchDTO matchDTO : matchDTOList) {
+	%>
+	<tr>
+		<th><%=matchDTO.getMatchDate()%></th>
+		<th><%=matchDTO.getMatchTime()%></th>
+		<th><%=matchDTO.getMatchLocD()%></th>
+		<th><%=matchDTO.getMatchGmName()%></th>
+		<th><%=matchDTO.getMatchGmAddr()%></th>
+		<th><%=matchDTO.getMatchGender()%></th>
+		<th><%=matchDTO.getMatchRegSeq()%></th>
+	</tr>
+	<%
+		}
+	%>
+	</thead>
+
+</form>
+
+
 </header>
 <!-- Content section-->
 <section class="py-5">

@@ -36,7 +36,7 @@
 <%@include file="../headerMenu.jsp"%>
 <h2>[매칭 가자!!!!!]</h2>
 
-<form id="updateUserInfoForm" method="post">
+<form id="matchForm" method="post">
     <p>
         <label>이름 : </label>
         <input class="w3-input" type="text" id="userName" name="userName" value="<%=userinfo.getUserName()%>">

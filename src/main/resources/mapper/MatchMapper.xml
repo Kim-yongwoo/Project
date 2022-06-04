@@ -31,4 +31,22 @@
      ,#{matchRegSeq}
     )
     </insert>
+
+    <select id="matchDTOList" parameterType="MatchDTO" resultType="MatchDTO">
+
+    SELECT
+          MATCH_LOC_M
+         ,MATCH_LOC_D
+         ,MATCH_GM_NAME
+         ,MATCH_GM_ADDR
+         ,MATCH_DATE
+         ,MATCH_TIME
+         ,MATCH_GENDER
+    FROM
+         TB_MATCH
+    WHERE
+          MATCH_REG_SEQ = #{matchRegSeq}
+    </select>
+
+
 </mapper>

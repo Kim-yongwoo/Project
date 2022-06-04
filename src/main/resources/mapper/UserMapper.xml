@@ -40,8 +40,8 @@
     </insert>
 <!--수정-->
     <select id="loginProc" resultType="UserDTO">
-        SELECT USER_NAME AS 'userName'
-
+        SELECT USER_SEQ
+              ,USER_ID
           FROM TB_USER
          WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
     </select>
@@ -53,15 +53,15 @@
            AND USER_PW = #{userPw}
     </select>
 
-    <select id="userInfo" resultType="UserDTO" parameterType="UserDTO">
+    <select id="getUserInfo" resultType="UserDTO" parameterType="UserDTO">
         SELECT
-            USER_NAME
-        ,   USER_EMAIL
-        ,   USER_NICKNAME
-        ,   USER_GENDER
-        FROM
-            TB_USER
-        WHERE USER_ID = #{userId}
+            USER_NAME,
+            USER_EMAIL,
+            USER_NICKNAME,
+            USER_GENDER,
+            USER_LEVEL
+        FROM TB_USER
+        WHERE USER_SEQ = #{userSeq}
     </select>
 
     <!--회원정보 수정 -->

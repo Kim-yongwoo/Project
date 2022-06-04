@@ -17,8 +17,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class UserController {
 
-
-    //서비스 객체 가져오기기
+    //서비스 객체 가져오기
    @Resource(name = "UserService")
     private IUserService userService;
 
@@ -75,17 +74,13 @@ public class UserController {
         log.info("userId :: " + userDTO.getUserId());
         log.info("userPw :: " + userDTO.getUserPw());
 
-//        log.debug("############################################################");
-//        log.debug("loginCheck >> " + userService.loginCheck(userDTO));
-//        log.debug("loginProc >> " + userService.loginProc(userDTO));
-//        log.debug("############################################################");
+
         log.info("Service : ");
         UserDTO user = new UserDTO();
         user = userService.loginProc(userDTO);
         log.info("Service End : ");
 
         // 로그인 성공 시
-
         if (user == null) {
             model.addAttribute("msg", "다시 시도해주세요");
             model.addAttribute("url", "/login");

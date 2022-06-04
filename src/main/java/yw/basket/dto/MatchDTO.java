@@ -16,7 +16,7 @@ public class MatchDTO {
     private String matchLocD;
     private String matchGmName;
     private String matchGmAddr;
-    private Timestamp matchDate;
+    private String matchDate;
     private String matchTime;
     private int matchMem;
     private String matchGender;

@@ -120,7 +120,6 @@
                 <option value="여자">여자</option>
             </select>
 
-
             <input type="button" id="matchRegSave" value="매칭시작">
 
         </div>

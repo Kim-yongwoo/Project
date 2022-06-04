@@ -41,8 +41,12 @@ public class MatchController {
     //매칭 생성
     @PostMapping(value = "/matchRegSave")
     @ResponseBody
-    public int matchRegSave(MatchDTO matchDTO) throws Exception {
+    public int matchRegSave(MatchDTO matchDTO, HttpSession session) throws Exception {
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        matchDTO.setMatchRegSeq(user.getUserSeq());
 
        return matchService.matchRegSave(matchDTO);
     }
+
+
 }
