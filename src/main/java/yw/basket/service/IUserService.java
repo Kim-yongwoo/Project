@@ -28,4 +28,7 @@ public interface IUserService {
 
     //비밀번호 변경
     int updatePwSave(UserDTO userDTO) throws Exception;
+
+    //아이디 중복체크
+    public int idCheck(String userId) throws Exception;
 }

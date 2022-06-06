@@ -172,6 +172,23 @@ public class UserController {
         return "/user/mypage";
     }
 
+    //아이디 중복체크
+    @PostMapping("/idCheck")
+    @ResponseBody
+    public String idCheck(String userId) throws Exception {
+
+      log.info("memberIdChk() 진입");
+        int result = userService.idCheck(userId);
+        log.info("결과값 = " + result);
+
+        if(result != 0) {
+            return "fail";	// 중복 아이디가 존재
+
+        } else {
+            return "success";	// 중복 아이디 x
+        }
+
+    }
 
 
     /*@RequestMapping(value = "/mypage")

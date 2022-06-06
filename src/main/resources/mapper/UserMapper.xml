@@ -87,4 +87,13 @@
         WHERE USER_SEQ = #{userSeq}
 
     </update>
+
+    <select id="idCheck" resultType="int">
+        SELECT COUNT(*)
+        FROM
+             TB_USER
+        WHERE
+              USER_ID = #{userId}
+
+    </select>
 </mapper>

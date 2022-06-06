@@ -43,7 +43,7 @@ public class MainController {
         List<MatchDTO> matchDTOList = matchService.matchDTOList(matchDTO);
 
         model.addAttribute("matchDTOList", matchDTOList);
-        return "main";
+        return "/main";
     }
 
     //매칭페이지 이동
