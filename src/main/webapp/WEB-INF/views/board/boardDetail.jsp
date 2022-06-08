@@ -9,13 +9,10 @@
 %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
-
+    <%@include file="../header.jsp"%>
 </head>
 <body>
+<%@include file="../headerMenu.jsp"%>
 <div class="container">
     <h2>게시글 상세 화면</h2>
     <form id="frm" method="post">
@@ -69,13 +66,13 @@
             });
 
             $("#edit").on("click", function(){
-                var frm = $("#frm")[0];
+                let frm = $("#frm")[0];
                 frm.action = "/boardUpdate";
                 frm.submit();
             });
 
             $("#delete").on("click", function(){
-                var frm = $("#frm")[0];
+                let frm = $("#frm")[0];
                 frm.action = "/boardDelete";
                 frm.submit();
             });

@@ -14,6 +14,7 @@ import yw.basket.dto.MatchDTO;
 import yw.basket.dto.UserDTO;
 import yw.basket.service.IMatchService;
 import yw.basket.service.IUserService;
+import yw.basket.util.ApiUtil;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -37,12 +38,14 @@ public class MainController {
     @GetMapping(value = "/main")
     public String main(MatchDTO matchDTO, HttpSession session, Model model) throws Exception {
 
-        UserDTO user = (UserDTO) session.getAttribute("user");
+        UserDTO user = (UserDTO) session.getAttribute("user"); //세션
         matchDTO.setMatchRegSeq(user.getUserSeq());
 
         List<MatchDTO> matchDTOList = matchService.matchDTOList(matchDTO);
-
+        String word = ApiUtil.search("스테판 커리");
+        System.out.println("결과 값 : " +word);
         model.addAttribute("matchDTOList", matchDTOList);
+        model.addAttribute("image_link", word);
         return "/main";
     }
 

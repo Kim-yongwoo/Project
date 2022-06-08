@@ -12,26 +12,27 @@
     <title>마이페이지</title>
 
     <script type="text/javascript"> //자바스크립트를 쓴다는 것
-    /*$(document).ready(function(){
-        $("#userInfo").click(function(){ //버튼 이름이 userLoginSave
+    $(document).ready(function(){
+        $("#memberOut").click(function(){ //버튼 이름이 userLoginSave
 
-            let params = $("#userInfo").serialize();
-
-            $.ajax({
-                type: "POST"
-                , url: "/mypage"
-                , data: params
-                , success: function(res) {
-                    if (res > 0) {
-                        alert("환영합니다!");
-                        location.href = "/main";
-                    } else {
-                        alert("로그인에 실패하였습니다. 다시 시도해주세요.")
+            let delConfirm = confirm('탈퇴하시겠습니까?');
+            if (delConfirm) {
+                $.ajax({
+                    type: "POST"
+                    , url: "/memberOut"
+                    , data: {}
+                    , success: function(res) {
+                        if (res > 0) {
+                            alert("회원탈퇴 되었습니다.");
+                            location.href = "/login";
+                        } else {
+                            alert("다시 시도해주세요.")
+                        }
                     }
-                }
-            })
+                })
+            }
         })
-    })*/
+    })
     </script>
 
 </head>
@@ -68,6 +69,8 @@
                 <p class="w3-center">
                     <input type="button" onclick="location.href='/memberModify'" value="회원정보 수정">
                     <input type="button" onclick="location.href='/updatePw'" value="비밀번호 변경">
+                    <input type="button" id="memberOut" value="회원탈퇴">
+
                 </p>
             </form>
         </div>

@@ -43,15 +43,17 @@
         SELECT USER_SEQ
               ,USER_ID
           FROM TB_USER
-         WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
+         WHERE USER_ID = #{userId}
+           AND USER_PW = #{userPw}
+           AND USER_STATUS = 'Y'
     </select>
 
-    <select id="loginCheck" parameterType="UserDTO" resultType="int">
+    <!--<select id="loginCheck" parameterType="UserDTO" resultType="int">
         SELECT COUNT(*)
           FROM TB_USER
          WHERE USER_ID = #{userId}
            AND USER_PW = #{userPw}
-    </select>
+    </select>-->
 
     <select id="getUserInfo" resultType="UserDTO" parameterType="UserDTO">
         SELECT
@@ -96,4 +98,15 @@
               USER_ID = #{userId}
 
     </select>
+
+    <!--회원탈퇴 -->
+    <update id="memberOut" parameterType="UserDTO">
+        UPDATE
+            TB_USER
+        SET
+         USER_STATUS = 'N'
+        WHERE USER_SEQ = #{userSeq}
+
+    </update>
+
 </mapper>

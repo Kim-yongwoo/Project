@@ -13,6 +13,7 @@ import yw.basket.service.IMatchService;
 import yw.basket.service.IUserService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -46,6 +47,21 @@ public class MatchController {
         matchDTO.setMatchRegSeq(user.getUserSeq());
 
        return matchService.matchRegSave(matchDTO);
+    }
+
+    //매칭 참여
+    @PostMapping(value = "/matchStart")
+    @ResponseBody
+    public int matchStart(MatchDTO matchDTO, HttpSession session, HttpServletRequest request) throws Exception {
+
+        //user에 세션 담기
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        //userSeq통해서 matchRegSeq 가져옴
+       matchDTO.setMatchRegSeq(user.getUserSeq());
+       matchDTO.setMatchSeq(Integer.parseInt(request.getParameter("matchSeq")));
+
+
+        return matchService.matchStart(matchDTO);
     }
 
 

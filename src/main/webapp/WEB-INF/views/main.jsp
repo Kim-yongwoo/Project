@@ -5,15 +5,22 @@
 
 <%
 	List<MatchDTO> matchDTOList = (List<MatchDTO>) request.getAttribute("matchDTOList");
+	String image_link = (String) request.getAttribute("image_link");
 
 	if (matchDTOList == null){
 		matchDTOList = new LinkedList<MatchDTO>();
 	}
+
 %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+	<!-- Bootstrap 사용을 위한 링크 -->
+	<%--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">--%>
+	<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>--%>
+
 	<%@include file="header.jsp"%>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -74,6 +81,26 @@
 				})
 			})
 
+
+			$("#matchStart").click(function(){
+
+				let params = $("#matchStartForm").serialize();
+
+				$.ajax({
+					type: "POST"
+					, url: "/matchStart"
+					, data: params
+					, success: function(res) {
+						if (res > 0) {
+							alert("매치에 참여하셨습니다");
+							location.href = "/main";
+						} else {
+							alert("다시 시도해주세요")
+						}
+					}
+				})
+			})
+
 		})
 	</script>
 
@@ -87,16 +114,15 @@
 
 	<ul class="nav nav-tabs">
 		<li class="active">
-			<a href="#">Home</a>
+			<a href="/main">Home</a>
 		</li>
 		<li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">마이페이지 <span class="caret"></span></a>
-			<ul class="dropdown-menu">
-				<li><a href="/my">나의활동</a></li>
-				<li><a href="/reqInfo">신청내역</a></li>
-				<li><a href="/mypage">내정보</a></li>
-			</ul>
-		</li>
+			<%--<ul class="dropdown-menu">--%>
+				<a href="/my">나의활동</a>
+				<a href="/reqInfo">신청내역</a>
+				<a href="/mypage">내정보</a>
+			<%--</ul>--%>
 		<li><a href="/chat">채팅</a></li>
 		<li><a href="/boardList">공지사항</a></li>
 	</ul>
@@ -104,21 +130,33 @@
 	<input type="button" onclick="location.href='/matchReg'" value="매칭시작">
 </div>
 
+<%--<input style="float: left; margin-right: 150px; width: 500px; height: 700px;">--%>
 <form id="getMatchForm" method="post">
 
+	<br><br>
+	<div style="margin-left: 200px;"></div>
+
+
+	<div class="btn-div">
+		<div class="btn-group">
+			<br>
+			<a class="btn btn-outline-secondary">경기날짜</a>
+			<a class="btn btn-outline-secondary">경기시간</a>
+			<a class="btn btn-outline-secondary">지역상세</a>
+			<a class="btn btn-outline-secondary">구장이름</a>
+			<a class="btn btn-outline-secondary">구장주소</a>
+			<a class="btn btn-outline-secondary">성별구분</a>
+			<a class="btn btn-outline-secondary">등록자</a>
+			<br>
+		</div>
+		<br>
+	</div>
 	<thead>
-	<tr>
-		<th scope="col">경기날짜</th>
-		<th scope="col">경기시간</th>
-		<th scope="col">지역상세</th>
-		<th scope="col">구장이름</th>
-		<th scope="col">구장주소</th>
-		<th scope="col">성별구분</th>
-		<th scope="col">등록자</th>
-	</tr>
+
 	<%
 		for (MatchDTO matchDTO : matchDTOList) {
 	%>
+	<br>
 	<tr>
 		<th><%=matchDTO.getMatchDate()%></th>
 		<th><%=matchDTO.getMatchTime()%></th>
@@ -128,13 +166,24 @@
 		<th><%=matchDTO.getMatchGender()%></th>
 		<th><%=matchDTO.getMatchRegSeq()%></th>
 	</tr>
+	<input type="button" onclick="location.href='/matchStart?matchSeq=<%=matchDTO.getMatchSeq()%>' " value="참여하기<%=matchDTO.getMatchRegSeq()%>">
+
+
+	<br>
 	<%
 		}
 	%>
+
 	</thead>
+</form>
+
+<form id="matchStartForm" method="post">
+
+
 
 </form>
 
+<img src="<%=image_link%>" style="float: right; margin-right: 150px; width: 500px; height: 700px;">
 
 </header>
 <!-- Content section-->
@@ -160,5 +209,6 @@
 </section>
 <br><br><br><br>
 <%@include file="footer.jsp"%>
+
 </body>
 </html>

@@ -1,9 +1,11 @@
 <%@ page import="java.util.List" %>
 <%@ page import="yw.basket.dto.BoardDTO" %>
 <%@ page import="java.util.LinkedList" %>
+<%@ page import="yw.basket.dto.UserDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     List<BoardDTO> boardDTOList = (List<BoardDTO>) request.getAttribute("boardList");
+    UserDTO userinfo = (UserDTO) request.getAttribute("userinfo");
 
     if (boardDTOList == null){
         boardDTOList = new LinkedList<BoardDTO>();
@@ -12,13 +14,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
-    <title>게시글 조회</title>
+    <%@include file="../header.jsp"%>
 </head>
 <body>
+<%@include file="../headerMenu.jsp"%>
 <div class="container">
     <h2>게시글 목록</h2>
     <table class="board_list">

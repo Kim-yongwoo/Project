@@ -15,4 +15,6 @@ public interface IMatchService {
     //매치 불러오기
     List<MatchDTO> matchDTOList(MatchDTO matchDTO) throws Exception;
 
+    //매치 참여
+    int matchStart(MatchDTO matchDTO) throws Exception;
 }

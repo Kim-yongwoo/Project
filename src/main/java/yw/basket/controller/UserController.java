@@ -65,7 +65,8 @@ public class UserController {
      * @title : 로그인
      */
     @PostMapping(value = "/loginProc")
-    public String loginProc(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+    @ResponseBody
+    public UserDTO loginProc(HttpServletRequest request, HttpSession session, Model model) throws Exception {
         UserDTO userDTO = new UserDTO();
 
         userDTO.setUserId(CmmUtil.nvl((String) request.getParameter("userId")));
@@ -76,21 +77,15 @@ public class UserController {
 
 
         log.info("Service : ");
-        UserDTO user = new UserDTO();
-        user = userService.loginProc(userDTO);
+        UserDTO user = userService.loginProc(userDTO);
         log.info("Service End : ");
 
         // 로그인 성공 시
-        if (user == null) {
-            model.addAttribute("msg", "다시 시도해주세요");
-            model.addAttribute("url", "/login");
-        } else {
+        if (user != null) {
             session.setAttribute("user", user);  // 로그인 성공시에만 세션을 담는다
-            model.addAttribute("msg", "환영합니다!");
-            model.addAttribute("url", "/main");
         }
 
-            return "/red";
+        return user;
     }
 
     /**
@@ -190,26 +185,18 @@ public class UserController {
 
     }
 
+    //회원 탈퇴
+    @PostMapping(value = "/memberOut")
+    @ResponseBody
+    public int memberOut(UserDTO userDTO, HttpSession session) throws Exception {
 
-    /*@RequestMapping(value = "/mypage")
-    public String mypage(Model model, UserDTO userDTO, HttpServletRequest request) throws Exception {
-        String userId = request.getSession().getAttributeNames("userInfo").userId;
-        userDTO.setUserId(userId);
-        UserDTO userInfo = userService.userInfo(userDTO);
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        userDTO.setUserSeq(user.getUserSeq());
 
-        model.addAttribute("userInfo", userInfo);
-        return "/user/mypage";
-    }*/
+        return userService.memberOut(userDTO);
+    }
 
-   /* @RequestMapping(value = "/userInfo")
-    public String userInfo(Model model, UserDTO userDTO) throws Exception {
-        return "user/mypage";
-        *//*userService.memberModify(userDTO);*//*
 
-        log.debug("### userService.memberModify Controller : {}", userDTO.getUserEmail());
-        model.addAttribute(userDTO);
-        return "user/mypage";
-    }*/
 
 }
 

@@ -40,11 +40,6 @@ public class UserService implements IUserService {
         return userMapper.loginProc(userDTO);
     }
 
-    //커피 테스트
-    @Override
-    public String coffee() throws Exception {
-        return  userMapper.coffee();
-    }
     //테스트
     @Override
     public String test() throws Exception {

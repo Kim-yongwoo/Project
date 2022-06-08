@@ -6,18 +6,17 @@
 
     <script type="text/javascript"> //자바스크립트를 쓴다는 것
         $(document).ready(function(){
-            $("#userLoginSave").click(function(){ //버튼 이름이 userLoginSave
+            $("#signIn").click(function(){ //버튼 이름이 userLoginSave
 
                 let params = $("#loginForm").serialize();
 
                 $.ajax({
                     type: "POST"
-                    , url: "/loginCheck"
+                    , url: "/loginProc"
                     , data: params
                     , success: function(res) {
-
-
-                        if (res > 0) {
+                        console.log(res);
+                        if (res != '') {
                             alert("환영합니다!");
                             location.href = "/main";
                         } else {
@@ -30,28 +29,42 @@
     </script>
 </head>
 <body>
-<%@include file="../headerMenu.jsp"%>
-
-<div class="container">
-    <form id="loginForm" action="/loginProc", method="post">
-        아이디:<input type="text" id="userId" name="userId"/><br/>
-        비밀번호:<input type="password" id="userPw" name="userPw"/><br/>
-        <%--<input type="submit" value="로그인">--%>
-        <input type="submit" value="로그인">
-        <input type="button" onclick="location.href='/userReg'" value="회원가입">
-
-    </form>
-</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<!-- Content section-->
-<section class="py-5">
-    <div class="container my-5">
+<section class="ftco-section">
+    <div class="container">
         <div class="row justify-content-center">
-
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <div class="img" style="background-image: url(../../../images/basketball-1.jpg);"></div>
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">Sign In</h3>
+                            </div>
+                        </div>
+                        <form id="loginForm">
+                            <div class="form-group mb-3">
+                                <label class="label" for="userId">UserID</label>
+                                <input type="text" id="userId" name="userId" class="form-control" placeholder="UserID" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="userPw">Password</label>
+                                <input type="password" id="userPw" name="userPw" class="form-control" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" id="signIn" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                            </div>
+                            <div class="form-group d-md-flex">
+                                <div class="w-100 text-md-right">
+                                    <a href="#">Forgot Password</a>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="text-center">Not a member? <a data-toggle="tab" href="#" onclick="location.href='/userReg'">Sign Up</a></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
-
-<%@include file="../footer.jsp"%>
 </body>
 </html>

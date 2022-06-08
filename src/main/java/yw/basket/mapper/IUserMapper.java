@@ -27,8 +27,6 @@ public interface IUserMapper {
     UserDTO getUserInfo(UserDTO userDTO) throws Exception;
 
 
-    // coffee 테스트
-    String coffee() throws Exception;
 
     //회원정보 수정
     int memberModifySave(UserDTO userDTO) throws Exception;
@@ -38,4 +36,7 @@ public interface IUserMapper {
 
     //아이디 중복체크
     public int idCheck(String userId);
+
+    //회원탈퇴
+    int memberOut(UserDTO userDTO) throws Exception;
 }

@@ -39,7 +39,7 @@
          ,MATCH_LOC_D
          ,MATCH_GM_NAME
          ,MATCH_GM_ADDR
-         ,MATCH_DATE
+         ,DATE_FORMAT(MATCH_DATE, '%Y-%m-%d') AS MATCH_DATE
          ,MATCH_TIME
          ,MATCH_GENDER
     FROM
@@ -47,6 +47,7 @@
     WHERE
           MATCH_REG_SEQ = #{matchRegSeq}
     </select>
+
 
 
 </mapper>

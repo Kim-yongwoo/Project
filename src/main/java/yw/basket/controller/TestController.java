@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import yw.basket.service.IUserService;
-
+import yw.basket.util.ApiUtil;
 import javax.annotation.Resource;
 
 
@@ -30,13 +30,13 @@ public class TestController {
         return "/hello";
     }
 
-    @RequestMapping(value = "/ediya")
-    public String eidya() throws Exception {
-        return "/user/ediya";
+
+    @RequestMapping(value = "/Naver")
+    public String naver() throws Exception {
+        String word = ApiUtil.search("손흥민");
+        System.out.println("결과 값 : " +word);
+
+        return "/hello";
     }
 
-    @RequestMapping(value = "/coffee")
-    public String coffee() throws Exception {
-        return "/coffee";
-    }
 }

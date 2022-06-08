@@ -18,9 +18,6 @@ public interface IUserService {
     // 로그인 처리
     public UserDTO loginProc(UserDTO userDTO) throws Exception;
 
-    //커피 테스트
-    public String coffee() throws Exception;
-
     UserDTO getUserInfo(UserDTO userDTO) throws Exception;
 
     //회원정보 수정
@@ -31,4 +28,7 @@ public interface IUserService {
 
     //아이디 중복체크
     public int idCheck(String userId) throws Exception;
+
+    //회원탈퇴
+    int memberOut(UserDTO userDTO) throws Exception;
 }
