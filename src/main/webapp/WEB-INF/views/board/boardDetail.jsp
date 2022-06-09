@@ -23,7 +23,7 @@
             <col width="15%"/>
             <col width="35%"/>
         </colgroup>
-        <caption>게시글 상세내용</caption>
+        <%--<caption>게시글 상세내용</caption>--%>
         <tbody>
         <tr>
             <th scope="row">글 번호</th>
@@ -43,9 +43,15 @@
                 <input type="text" id="title" name="boardTitle" value="<%=boardDTO.getBoardTitle()%>"/>
             </td>
         </tr>
-        <tr>
+        <%--<tr>
             <td colspan="4" class="view_text">
 							<input type="text" name="boardContents" value="<%=boardDTO.getBoardContents()%>">
+            </td>
+        </tr>--%>
+
+        <tr>
+            <td colspan="4">
+                <textarea id="boardContents" name="boardContents"></textarea>
             </td>
         </tr>
         </tbody>

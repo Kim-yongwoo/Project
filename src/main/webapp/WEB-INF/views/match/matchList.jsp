@@ -85,7 +85,7 @@
                     <th><%=matchDTO.getMatchGender()%></th>
                     <th><%=matchDTO.getMatchRegSeq()%></th>
                 </tr>
-                <input type="button" onclick="location.href='/matchStart'" value="참여하기">
+                <input type="button" onclick="location.href='/matchReq'" value="참여하기">
                 <br>
                 <%
                     }

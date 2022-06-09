@@ -2,10 +2,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.LinkedList" %>
+<%@ page import="yw.basket.dto.UserDTO" %>
 
 <%
 	List<MatchDTO> matchDTOList = (List<MatchDTO>) request.getAttribute("matchDTOList");
+
+	//Api 사진
 	String image_link = (String) request.getAttribute("image_link");
+
+	UserDTO userinfo = (UserDTO) request.getAttribute("userinfo");
+
+
 
 	if (matchDTOList == null){
 		matchDTOList = new LinkedList<MatchDTO>();
@@ -82,13 +89,13 @@
 			})
 
 
-			$("#matchStart").click(function(){
+			$("#matchReq").click(function(){
 
-				let params = $("#matchStartForm").serialize();
+				let params = $("#matchReqForm").serialize();
 
 				$.ajax({
 					type: "POST"
-					, url: "/matchStart"
+					, url: "/matchReq"
 					, data: params
 					, success: function(res) {
 						if (res > 0) {
@@ -110,7 +117,7 @@
 <body><!-- Responsive navbar-->
 <%@include file="headerMenu.jsp"%>
 
-<div class="container">
+<%--<div class="container">
 
 	<ul class="nav nav-tabs">
 		<li class="active">
@@ -118,23 +125,24 @@
 		</li>
 		<li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">마이페이지 <span class="caret"></span></a>
-			<%--<ul class="dropdown-menu">--%>
+			&lt;%&ndash;<ul class="dropdown-menu">&ndash;%&gt;
 				<a href="/my">나의활동</a>
 				<a href="/reqInfo">신청내역</a>
 				<a href="/mypage">내정보</a>
-			<%--</ul>--%>
+			&lt;%&ndash;</ul>&ndash;%&gt;
 		<li><a href="/chat">채팅</a></li>
 		<li><a href="/boardList">공지사항</a></li>
 	</ul>
 
-	<input type="button" onclick="location.href='/matchReg'" value="매칭시작">
-</div>
 
+</div>--%>
+<div style="margin-left: 200px;">
+	<input type="button" onclick="location.href='/matchReg'" value="매칭시작"></div>
 <%--<input style="float: left; margin-right: 150px; width: 500px; height: 700px;">--%>
 <form id="getMatchForm" method="post">
 
 	<br><br>
-	<div style="margin-left: 200px;"></div>
+	<div style="margin-left: 200px;">
 
 
 	<div class="btn-div">
@@ -151,6 +159,7 @@
 		</div>
 		<br>
 	</div>
+
 	<thead>
 
 	<%
@@ -161,27 +170,26 @@
 		<th><%=matchDTO.getMatchDate()%></th>
 		<th><%=matchDTO.getMatchTime()%></th>
 		<th><%=matchDTO.getMatchLocD()%></th>
-		<th><%=matchDTO.getMatchGmName()%></th>
+		<th><a href="/matchDetail/<%=matchDTO.getMatchSeq()%>"><%=matchDTO.getMatchGmName()%></a></th>
 		<th><%=matchDTO.getMatchGmAddr()%></th>
 		<th><%=matchDTO.getMatchGender()%></th>
 		<th><%=matchDTO.getMatchRegSeq()%></th>
-	</tr>
-	<input type="button" onclick="location.href='/matchStart?matchSeq=<%=matchDTO.getMatchSeq()%>' " value="참여하기<%=matchDTO.getMatchRegSeq()%>">
 
+	</tr>
+	<input type="submit" value="참여">
 
 	<br>
 	<%
 		}
 	%>
 
+
 	</thead>
+	</div>
 </form>
 
-<form id="matchStartForm" method="post">
-
-
-
-</form>
+<%--<form id="matchStartForm" method="post">
+</form>--%>
 
 <img src="<%=image_link%>" style="float: right; margin-right: 150px; width: 500px; height: 700px;">
 

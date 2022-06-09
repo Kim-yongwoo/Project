@@ -34,12 +34,6 @@ public class MatchService implements IMatchService {
         return matchMapper.matchDTOList(matchDTO);
     }
 
-    //매치 참여
-    @Override
-    public int matchStart(MatchDTO matchDTO) throws Exception {
-        return matchMapper.matchStart(matchDTO);
-
-    }
 
 
 }

@@ -16,6 +16,5 @@ public interface IMatchMapper {
     //매치 조회
     List<MatchDTO> matchDTOList(MatchDTO matchDTO) throws Exception;
 
-    //매치 참여
-    int matchStart(MatchDTO matchDTO) throws Exception;
+
 }
