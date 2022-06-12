@@ -2,7 +2,6 @@ package yw.basket.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +25,7 @@ public class RequestController {
     @Resource(name = "RequestService")
     private IRequestService requestService;
 
-    //매칭 참여
+    /*//매칭 참여
     @PostMapping(value = "/matchReq")
     @ResponseBody
     public int matchReq(RequestDTO requestDTO, HttpSession session, HttpServletRequest request) throws Exception {
@@ -34,11 +33,11 @@ public class RequestController {
         //user에 세션 담기
         UserDTO user = (UserDTO) session.getAttribute("user");
         //userSeq통해서 matchRegSeq 가져옴
-        requestDTO.setReqMatchSeq(user.getUserSeq());
+        *//*requestDTO.setReqMatchSeq(user.getUserSeq());*//*
 
         return requestService.matchReq(requestDTO);
     }
-
+*/
 
 
 
