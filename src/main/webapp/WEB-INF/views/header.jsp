@@ -20,11 +20,9 @@
 	<%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&lt;%&ndash;&ndash;%&gt;">--%>
 	<link type="text/css" rel="stylesheet" href="../../css/style.css" />
 
-	<!-- JS -->
-	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../../js/popper.js"></script>
 	<script type="text/javascript" src="../../js/main.js"></script>
-	<%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
 </head>
 </html>

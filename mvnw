@@ -21,11 +21,11 @@
 # ----------------------------------------------------------------------------
 # Maven Start Up Batch script
 #
-# Required ENV vars:
+# Required ENV lets:
 # ------------------
 #   JAVA_HOME - location of a JDK home dir
 #
-# Optional ENV vars
+# Optional ENV lets
 # -----------------
 #   M2_HOME - location of maven2's installed home dir
 #   MAVEN_OPTS - parameters passed to the Java VM when running Maven
@@ -50,7 +50,7 @@ if [ -z "$MAVEN_SKIP_RC" ] ; then
 
 fi
 
-# OS specific support.  $var _must_ be set to either true or false.
+# OS specific support.  $let _must_ be set to either true or false.
 cygwin=false;
 darwin=false;
 mingw=false
@@ -160,7 +160,7 @@ if [ ! -x "$JAVACMD" ] ; then
 fi
 
 if [ -z "$JAVA_HOME" ] ; then
-  echo "Warning: JAVA_HOME environment variable is not set."
+  echo "Warning: JAVA_HOME environment letiable is not set."
 fi
 
 CLASSWORLDS_LAUNCHER=org.codehaus.plexus.classworlds.launcher.Launcher

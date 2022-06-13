@@ -21,10 +21,24 @@ public class RequestService implements IRequestService {
 
     }
 
-
     @Override
     public int matchReq(RequestDTO requestDTO) throws Exception {
         return requestMapper.matchReq(requestDTO);
+    }
+
+    @Override
+    public int matchReqSave(RequestDTO requestDTO) throws Exception {
+        return requestMapper.matchReqSave(requestDTO);
+    }
+
+    @Override
+    public int matchReqMain(RequestDTO requestDTO) throws Exception {
+        return requestMapper.matchReqMain(requestDTO);
+    }
+
+    @Override
+    public int matchReqCncSave(RequestDTO requestDTO) throws Exception {
+        return requestMapper.matchReqCncSave(requestDTO);
     }
 }
 

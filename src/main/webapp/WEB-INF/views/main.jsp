@@ -3,21 +3,17 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.LinkedList" %>
 <%@ page import="yw.basket.dto.UserDTO" %>
-
 <%
 	List<MatchDTO> matchDTOList = (List<MatchDTO>) request.getAttribute("matchDTOList");
 
 	//Api 사진
 	String image_link = (String) request.getAttribute("image_link");
 
-	UserDTO userinfo = (UserDTO) request.getAttribute("userinfo");
-
-
+	UserDTO user = (UserDTO) session.getAttribute("user");
 
 	if (matchDTOList == null){
 		matchDTOList = new LinkedList<MatchDTO>();
 	}
-
 %>
 
 <!DOCTYPE html>
@@ -30,6 +26,47 @@
 
 	<%@include file="header.jsp"%>
 	<script type="text/javascript">
+		// 매칭 참여
+		function matchReq(matchSeq) {
+
+			let params = {};
+			params.matchSeq = matchSeq;
+
+			$.ajax({
+				type: "POST"
+				, url: "/matchReq"
+				, data: params
+				, success: function(res) {
+					if (res > 0) {
+						alert("매치에 참여하셨습니다");
+						location.href = "/main";
+					} else {
+						alert("다시 시도해주세요")
+					}
+				}
+			})
+		}
+
+		// 매칭 참여 취소
+		function matchReqCnc(reqSeq) {
+			let params = {};
+			params.reqSeq = reqSeq;
+
+			$.ajax({
+				type: "POST"
+				, url: "/matchReqCnc"
+				, data: params
+				, success: function(res) {
+					if (res > 0) {
+						alert("신청취소 되었습니다.");
+						location.href = "/main";
+					} else {
+						alert("다시 시도해주세요")
+					}
+				}
+			})
+		}
+
 		$(document).ready(function(){
 			$("#matchLocM").change(function(){
 
@@ -87,28 +124,7 @@
 					}
 				})
 			})
-
-
-			$("#matchReq").click(function(){
-
-				let params = $("#matchReqForm").serialize();
-
-				$.ajax({
-					type: "POST"
-					, url: "/matchReq"
-					, data: params
-					, success: function(res) {
-						if (res > 0) {
-							alert("매치에 참여하셨습니다");
-							location.href = "/main";
-						} else {
-							alert("다시 시도해주세요")
-						}
-					}
-				})
-			})
-
-		})
+		});
 	</script>
 
 
@@ -117,26 +133,9 @@
 <body><!-- Responsive navbar-->
 <%@include file="headerMenu.jsp"%>
 
-<%--<div class="container">
 
-	<ul class="nav nav-tabs">
-		<li class="active">
-			<a href="/main">Home</a>
-		</li>
-		<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">마이페이지 <span class="caret"></span></a>
-			&lt;%&ndash;<ul class="dropdown-menu">&ndash;%&gt;
-				<a href="/my">나의활동</a>
-				<a href="/reqInfo">신청내역</a>
-				<a href="/mypage">내정보</a>
-			&lt;%&ndash;</ul>&ndash;%&gt;
-		<li><a href="/chat">채팅</a></li>
-		<li><a href="/boardList">공지사항</a></li>
-	</ul>
-
-
-</div>--%>
 <div style="margin-left: 200px;">
+	<div><%= user.getUserSeq() %> <%= user.getUserId() %> 님</div>
 	<input type="button" onclick="location.href='/matchReg'" value="매칭시작"></div>
 <%--<input style="float: left; margin-right: 150px; width: 500px; height: 700px;">--%>
 <form id="getMatchForm" method="post">
@@ -150,11 +149,12 @@
 			<br>
 			<a class="btn btn-outline-secondary">경기날짜</a>
 			<a class="btn btn-outline-secondary">경기시간</a>
-			<a class="btn btn-outline-secondary">지역상세</a>
+			<a class="btn btn-outline-secondary">위치</a>
 			<a class="btn btn-outline-secondary">구장이름</a>
 			<a class="btn btn-outline-secondary">구장주소</a>
 			<a class="btn btn-outline-secondary">성별구분</a>
-			<a class="btn btn-outline-secondary">등록자</a>
+			<a class="btn btn-outline-secondary">레벨</a>
+			<a class="btn btn-outline-secondary">참여인원</a>
 			<br>
 		</div>
 		<br>
@@ -166,27 +166,33 @@
 		for (MatchDTO matchDTO : matchDTOList) {
 	%>
 	<br>
-	<tr>
-		<th><%=matchDTO.getMatchDate()%></th>
-		<th><%=matchDTO.getMatchTime()%></th>
-		<th><%=matchDTO.getMatchLocD()%></th>
-		<th><a href="/matchDetail/<%=matchDTO.getMatchSeq()%>"><%=matchDTO.getMatchGmName()%></a></th>
-		<th><%=matchDTO.getMatchGmAddr()%></th>
-		<th><%=matchDTO.getMatchGender()%></th>
-		<th><%=matchDTO.getMatchRegSeq()%></th>
+		<tr>
 
-	</tr>
-	<input type="submit" value="참여">
+			<th><%=matchDTO.getMatchSeq()%></th>
+			<th><%=matchDTO.getMatchDate()%></th>
+			<th><%=matchDTO.getMatchTime()%></th>
+			<th><%=matchDTO.getMatchLocM()%></th>
+			<th><%=matchDTO.getMatchLocD()%></th>
+			<th><a href="/matchDetail/<%=matchDTO.getMatchSeq()%>"><%=matchDTO.getMatchGmName()%></a></th>
+			<th><%=matchDTO.getMatchGmAddr()%></th>
+			<th><%=matchDTO.getMatchGender()%></th>
+			<th><%=matchDTO.getMatchLevel()%></th>
+			<th><%=matchDTO.getReqCnt()%> / <%=matchDTO.getMatchMem()%></th>
 
-	<br>
-	<%
-		}
-	%>
-
-
+			<% if (!matchDTO.getMatchDateStatus().equals("Y") || matchDTO.getReqCnt() == matchDTO.getMatchMem()) { %>
+				<th>마감</th>
+			<% } else if (!matchDTO.getReqStatus().equals("Y")) { %>
+				<th><input type="button" value="참여" onclick="matchReq(<%=matchDTO.getMatchSeq()%>)" /></th>
+			<% } else { %>
+				<th><input type="button" value="취소" onclick="matchReqCnc(<%=matchDTO.getReqSeq()%>)" /></th>
+			<% } %>
+		</tr>
+	<% } %>
 	</thead>
 	</div>
 </form>
+
+
 
 <%--<form id="matchStartForm" method="post">
 </form>--%>

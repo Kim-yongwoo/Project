@@ -60,7 +60,11 @@
             <scope>provided</scope>
         </dependency>
 
-
+        <!--socket -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
 
         <!--jsp파일 서버 재시작 없이 바로 적용하기 -->
         <dependency>

@@ -54,7 +54,7 @@
                     , url: "/matchRegSave"
                     , data: params
                     , success: function(res) {
-                        if (res == 1) {
+                        if (res > 0) {
                             alert("매치가 생성되었습니다");
                             location.href = "/main";
                         } else {
@@ -119,9 +119,28 @@
                 <option value="남자">남자</option>
                 <option value="여자">여자</option>
             </select>
-
+        </div>
+        <!-- 레벨 -->
+        <div class="form-group">
+            <label for="matchLevel">레벨</label>
+            <select id="matchLevel" class="form-control" name="matchLevel">
+                <option value="비기너">비기너</option>
+                <option value="아마추어">아마추어</option>
+                <option value="일반">일반</option>
+            </select>
+        </div>
+        <!-- 모집인원 -->
+        <div class="form-group">
+            <label for="matchMem">모집인원</label>
+            <select id="matchMem" class="form-control" name="matchMem">
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+        <div class="form-group">
             <input type="button" id="matchRegSave" value="매칭시작">
-
+        </div>
         </div>
 
     </form>

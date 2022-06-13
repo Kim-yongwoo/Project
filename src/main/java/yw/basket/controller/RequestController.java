@@ -25,20 +25,39 @@ public class RequestController {
     @Resource(name = "RequestService")
     private IRequestService requestService;
 
-    /*//매칭 참여
+    //매칭 참여 (상세)
     @PostMapping(value = "/matchReq")
     @ResponseBody
-    public int matchReq(RequestDTO requestDTO, HttpSession session, HttpServletRequest request) throws Exception {
+    public int matchReq(RequestDTO requestDTO, MatchDTO matchDTO, HttpSession session) throws Exception {
 
         //user에 세션 담기
         UserDTO user = (UserDTO) session.getAttribute("user");
         //userSeq통해서 matchRegSeq 가져옴
-        *//*requestDTO.setReqMatchSeq(user.getUserSeq());*//*
+        requestDTO.setReqUserSeq(user.getUserSeq());
+        requestDTO.setReqMatchSeq(matchDTO.getMatchSeq());
 
-        return requestService.matchReq(requestDTO);
+        return requestService.matchReqSave(requestDTO);
     }
-*/
 
+    //매칭 신청 취소
+    @PostMapping(value = "/matchReqCnc")
+    @ResponseBody
+    public int matchReqCnc(RequestDTO requestDTO) throws Exception {
+        return requestService.matchReqCncSave(requestDTO);
+    }
 
+    //매칭 참여
+    @PostMapping(value = "/matchReqMain")
+    @ResponseBody
+    public int matchReqMain(RequestDTO requestDTO, MatchDTO matchDTO, HttpSession session) throws Exception {
+
+        //user에 세션 담기
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        //userSeq통해서 matchRegSeq 가져옴
+        requestDTO.setReqUserSeq(user.getUserSeq());
+        requestDTO.setReqMatchSeq(matchDTO.getMatchSeq());
+
+        return requestService.matchReqSave(requestDTO);
+    }
 
 }

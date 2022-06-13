@@ -133,11 +133,9 @@ public class BoardController {
 //게시글 수정폼
     /*@RequestMapping(value = "/boardUpdateForm")
     public String boardUpdateForm(@RequestParam BoardDTO boardDTO, Model model) throws Exception {
-
         BoardDTO data = boardService.boardUpdate(boardDTO);
         model.addAttribute("data", data);
         return "/boardUpdate";
-
     }*/
 
 
@@ -148,15 +146,6 @@ public class BoardController {
     /*//게시글 수정 화면
     @RequestMapping("/boardUpdate")
     public String boardUpdate(BoardDTO boardDTO) throws Exception {
-
         return "/board/boardDetail";
-
 }
 */
-
-
-
-
-
-
-

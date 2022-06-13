@@ -20,10 +20,10 @@
 @REM ----------------------------------------------------------------------------
 @REM Maven Start Up Batch script
 @REM
-@REM Required ENV vars:
+@REM Required ENV lets:
 @REM JAVA_HOME - location of a JDK home dir
 @REM
-@REM Optional ENV vars
+@REM Optional ENV lets
 @REM M2_HOME - location of maven2's installed home dir
 @REM MAVEN_BATCH_ECHO - set to 'on' to enable the echoing of the batch commands
 @REM MAVEN_BATCH_PAUSE - set to 'on' to wait for a keystroke before ending
@@ -54,7 +54,7 @@ if exist "%USERPROFILE%\mavenrc_pre.cmd" call "%USERPROFILE%\mavenrc_pre.cmd" %*
 
 set ERROR_CODE=0
 
-@REM To isolate internal variables from possible post scripts, we use another setlocal
+@REM To isolate internal letiables from possible post scripts, we use another setlocal
 @setlocal
 
 @REM ==== START VALIDATION ====
@@ -62,7 +62,7 @@ if not "%JAVA_HOME%" == "" goto OkJHome
 
 echo.
 echo Error: JAVA_HOME not found in your environment. >&2
-echo Please set the JAVA_HOME variable in your environment to match the >&2
+echo Please set the JAVA_HOME letiable in your environment to match the >&2
 echo location of your Java installation. >&2
 echo.
 goto error
@@ -73,7 +73,7 @@ if exist "%JAVA_HOME%\bin\java.exe" goto init
 echo.
 echo Error: JAVA_HOME is set to an invalid directory. >&2
 echo JAVA_HOME = "%JAVA_HOME%" >&2
-echo Please set the JAVA_HOME variable in your environment to match the >&2
+echo Please set the JAVA_HOME letiable in your environment to match the >&2
 echo location of your Java installation. >&2
 echo.
 goto error

@@ -26,11 +26,11 @@ public class UserController {
      * @return : N/A
      * @title : 메인 시작 URL
      */
-    @GetMapping(value = "/")
+    /*@GetMapping(value = "/")
     public String start(HttpSession session) {
         session.setAttribute("userInfo", "Test");
         return "redirect:/login";
-    }
+    }*/
 
     /**
      * @param : N/A
@@ -68,6 +68,7 @@ public class UserController {
     @ResponseBody
     public UserDTO loginProc(HttpServletRequest request, HttpSession session, Model model) throws Exception {
         UserDTO userDTO = new UserDTO();
+        log.info("Service Start!");
 
         userDTO.setUserId(CmmUtil.nvl((String) request.getParameter("userId")));
         userDTO.setUserPw(CmmUtil.nvl((String) request.getParameter("userPw")));
@@ -194,6 +195,12 @@ public class UserController {
         userDTO.setUserSeq(user.getUserSeq());
 
         return userService.memberOut(userDTO);
+    }
+
+    // 아이디 찾기 폼
+    @RequestMapping(value = "/findId")
+    public String findId() throws Exception{
+        return "/user/findId";
     }
 
 

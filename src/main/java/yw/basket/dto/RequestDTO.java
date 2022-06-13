@@ -12,9 +12,8 @@ import java.sql.Timestamp;
 public class RequestDTO {
 
    private int reqSeq; //신청시퀀스
-   private String reqUserSeq; //신청자시퀀스
+   private int reqUserSeq; //신청자시퀀스
    private int reqMatchSeq; //경기시퀀스
    private String reqStatus; //신청상태
-
 
 }

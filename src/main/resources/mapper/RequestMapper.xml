@@ -4,7 +4,7 @@
 <!-- JAVA와 연결할 Mapper 파일 설정 -->
 <mapper namespace="yw.basket.mapper.IRequestMapper">
 
-    <insert id="matchReq" parameterType="RequestDTO">
+    <insert id="matchReqSave" parameterType="RequestDTO">
         INSERT
         INTO
             TB_REQUEST
@@ -21,6 +21,10 @@
             )
     </insert>
 
-
+    <update id="matchReqCncSave" parameterType="RequestDTO">
+        UPDATE  TB_REQUEST
+        SET     REQ_STATUS = 'N'
+        WHERE   REQ_SEQ = #{reqSeq}
+    </update>
 
 </mapper>

@@ -4,28 +4,47 @@
 <head>
     <%@include file="../header.jsp"%>
 
+    <script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript"> //자바스크립트를 쓴다는 것
-        $(document).ready(function(){
-            $("#signIn").click(function(){ //버튼 이름이 userLoginSave
+    $(document).ready(function(){
 
-                let params = $("#loginForm").serialize();
+        $("#signIn").click(function(){ //버튼 이름이 userLoginSave
 
-                $.ajax({
-                    type: "POST"
-                    , url: "/loginProc"
-                    , data: params
-                    , success: function(res) {
-                        console.log(res);
-                        if (res != '') {
-                            alert("환영합니다!");
-                            location.href = "/main";
-                        } else {
-                            alert("로그인에 실패하였습니다. 다시 시도해주세요.")
-                        }
+            let params = $("#loginForm").serialize();
+
+
+            $.ajax({
+                url: "/loginProc",
+                type: "POST",
+                data: params,
+                success: function (res) {
+
+                    if (res != "") {
+                        alert("환영합니다!");
+                        location.href = "/main";
+                    } else {
+                        alert("로그인에 실패하였습니다. 다시 시도해주세요.")
                     }
-                })
-            })
+                }
+
+            });
+
+
+
+            // $.ajax({
+            //     dataType: "JSON",
+            //     type: "POST",
+            //     url: "/loginProc",
+            //     data: {
+            //         "userId": userId,
+            //         "userPw": userPw
+            //     }
+            //     , success: function(res) {
+
+            //     }
+            // })
         })
+    })
     </script>
 </head>
 <body>
@@ -55,9 +74,15 @@
                             </div>
                             <div class="form-group d-md-flex">
                                 <div class="w-100 text-md-right">
+                                    <a href="#">Forgot Id</a>
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex">
+                                <div class="w-100 text-md-right">
                                     <a href="#">Forgot Password</a>
                                 </div>
                             </div>
+
                         </form>
                         <p class="text-center">Not a member? <a data-toggle="tab" href="#" onclick="location.href='/userReg'">Sign Up</a></p>
                     </div>

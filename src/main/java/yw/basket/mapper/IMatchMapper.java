@@ -16,5 +16,8 @@ public interface IMatchMapper {
     //매치 조회
     List<MatchDTO> matchDTOList(MatchDTO matchDTO) throws Exception;
 
+    //매치 상세
+    MatchDTO matchDetail(MatchDTO matchDTO) throws Exception;
 
+    int matchReqSave(MatchDTO matchDTO) throws Exception;
 }

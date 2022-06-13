@@ -34,6 +34,16 @@ public class MatchService implements IMatchService {
         return matchMapper.matchDTOList(matchDTO);
     }
 
+    //매치 상세
+    @Override
+    public MatchDTO matchDetail(MatchDTO matchDTO) throws Exception {
+        return matchMapper.matchDetail(matchDTO);
+    }
+
+    @Override
+    public int matchReqSave(MatchDTO matchDTO) throws Exception {
+        return matchMapper.matchReqSave(matchDTO);
+    }
 
 
 }

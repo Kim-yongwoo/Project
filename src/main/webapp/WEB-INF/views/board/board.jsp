@@ -23,7 +23,7 @@
                 location.href ="write";
             })
             $.ajax({url: "/boardList", success: function(result){
-                    var html = "";
+                    let html = "";
                     result.forEach(function(item){
                         html+= "<tr> <td><a href = 'view?idx=" + item.idx + "'>" + item.title + "</a>"
                     })
