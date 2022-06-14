@@ -12,6 +12,46 @@
 <head>
     <%@include file="../header.jsp"%>
     <script type="text/javascript">
+        function matchReq1(matchSeq) {
+
+            let params = {};
+            params.matchSeq = matchSeq;
+
+            $.ajax({
+                type: "POST"
+                , url: "/matchReq"
+                , data: params
+                , success: function(res) {
+                    if (res > 0) {
+                        alert("매치에 참여하셨습니다");
+                        location.href = "/main";
+                    } else {
+                        alert("다시 시도해주세요")
+                    }
+                }
+            })
+        }
+
+        // 매칭 참여 취소
+        function matchReqCnc(reqSeq) {
+            let params = {};
+            params.reqSeq = reqSeq;
+
+            $.ajax({
+                type: "POST"
+                , url: "/matchReqCnc"
+                , data: params
+                , success: function(res) {
+                    if (res > 0) {
+                        alert("신청취소 되었습니다.");
+                        location.href = "/main";
+                    } else {
+                        alert("다시 시도해주세요")
+                    }
+                }
+            })
+        }
+
         $(document).ready(function(){
             $("#matchLocM").change(function(){
 
@@ -128,8 +168,17 @@
     </div>
     <div class="form-group">
         <input type="button" onclick="location.href='/main'" value="뒤로가기">
-        <input type="button" id="matchReq" value="매칭참여">
     </div>
+    <div>
+        <% if (!matchDTO.getMatchDateStatus().equals("Y") || matchDTO.getReqCnt() == matchDTO.getMatchMem()) { %>
+        <th>마감</th>
+        <% } else if (!matchDTO.getReqStatus().equals("Y")) { %>
+        <th><input type="button" value="참여" onclick="matchReq1(<%=matchDTO.getMatchSeq()%>)" /></th>
+        <% } else { %>
+        <th><input type="button" value="취소" onclick="matchReqCnc(<%=matchDTO.getReqSeq()%>)" /></th>
+        <% } %>
+    </div>
+
 </form>
 
 <%@include file="../footer.jsp"%>

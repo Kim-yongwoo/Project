@@ -1,5 +1,7 @@
 package yw.basket.controller;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import yw.basket.model.ChatMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -24,4 +26,9 @@ public class ChatController {
         return chatMessage;
     }
 
+    @RequestMapping(value = "/chat")
+    public String chat() throws Exception {
+
+        return "/chat/chatList";
+    }
 }

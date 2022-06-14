@@ -30,7 +30,7 @@
 					<li class="nav-item"><a href="/mypage" class="nav-link">내정보</a></li>
 
 					</li>
-					<li class="nav-item"><a href="/chat" class="nav-link">Chat</a></li>
+					<li class="nav-item"><a href="/" class="nav-link">Chat</a></li>
 					<li class="nav-item"><a href="/boardList" class="nav-link">Notice</a></li>
 				</ul>
 			</div>

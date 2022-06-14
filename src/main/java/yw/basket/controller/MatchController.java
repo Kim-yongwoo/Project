@@ -82,7 +82,10 @@ public class MatchController {
         matchDTO = matchService.matchDetail(matchDTO);
         model.addAttribute("matchDTO", matchDTO);
         return "/match/matchDetail";
+
     }
+
+
 
    /* @RequestMapping("/matchReq")
     public String matchReq(MatchDTO matchDTO, HttpSession session) throws Exception {

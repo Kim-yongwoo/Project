@@ -44,9 +44,9 @@
              ,TM.MATCH_GM_NAME
              ,TM.MATCH_GM_ADDR
              ,DATE_FORMAT(TM.MATCH_DATE, '%Y-%m-%d') AS MATCH_DATE
-            ,CASE
-            WHEN DATE_FORMAT(TM.MATCH_DATE, '%Y%m%d') < DATE_FORMAT(NOW(), '%Y%m%d') THEN 'N'
-            ELSE 'Y'
+             ,CASE
+                  WHEN DATE_FORMAT(TM.MATCH_DATE, '%Y%m%d') < DATE_FORMAT(NOW(), '%Y%m%d') THEN 'N'
+                  ELSE 'Y'
             END AS MATCH_DATE_STATUS
              ,TM.MATCH_TIME
              ,TM.MATCH_GENDER
@@ -59,35 +59,52 @@
                  AND A.REQ_STATUS = 'Y') AS REQ_CNT
         FROM
             TB_MATCH AS TM
-        LEFT JOIN ( SELECT REQ_SEQ
-                         , REQ_STATUS
-                         , REQ_MATCH_SEQ
-                    FROM TB_REQUEST
-                    WHERE REQ_USER_SEQ = #{matchRegSeq}
-                      AND REQ_STATUS = 'Y' ) AS TR
-        ON TM.MATCH_SEQ = TR.REQ_MATCH_SEQ
+                LEFT JOIN ( SELECT REQ_SEQ
+                                 , REQ_STATUS
+                                 , REQ_MATCH_SEQ
+                            FROM TB_REQUEST
+                            WHERE REQ_USER_SEQ = #{matchRegSeq}
+                              AND REQ_STATUS = 'Y' ) AS TR
+                          ON TM.MATCH_SEQ = TR.REQ_MATCH_SEQ
         ORDER BY TM.MATCH_SEQ DESC
-    ]]>
+        ]]>
     </select>
 
 
     <select id="matchDetail" parameterType="MatchDTO" resultType="MatchDTO">
 
+         <![CDATA[
         SELECT
-              MATCH_SEQ
-             ,MATCH_LOC_M
-             ,MATCH_LOC_D
-             ,MATCH_GM_NAME
-             ,MATCH_GM_ADDR
-             ,DATE_FORMAT(MATCH_DATE, '%Y-%m-%d') AS MATCH_DATE
-             ,MATCH_TIME
-             ,MATCH_GENDER
-             ,MATCH_LEVEL
-             ,MATCH_MEM
-        FROM
-            TB_MATCH
-        WHERE
-            MATCH_SEQ = #{matchSeq}
+            TM.MATCH_SEQ
+             ,TR.REQ_SEQ
+             ,TM.MATCH_LOC_M
+             ,TM.MATCH_LOC_D
+             ,TM.MATCH_GM_NAME
+             ,TM.MATCH_GM_ADDR
+             ,DATE_FORMAT(TM.MATCH_DATE, '%Y-%m-%d') AS MATCH_DATE
+             ,CASE
+                  WHEN DATE_FORMAT(TM.MATCH_DATE, '%Y%m%d') < DATE_FORMAT(NOW(), '%Y%m%d') THEN 'N'
+                  ELSE 'Y'
+            END AS MATCH_DATE_STATUS
+             ,TM.MATCH_TIME
+             ,TM.MATCH_GENDER
+             ,TM.MATCH_LEVEL
+             ,TM.MATCH_MEM
+             ,IFNULL(TR.REQ_STATUS, 'N') AS REQ_STATUS
+             ,(SELECT COUNT(*)
+               FROM TB_REQUEST A
+               WHERE A.REQ_MATCH_SEQ = TM.MATCH_SEQ
+                 AND A.REQ_STATUS = 'Y') AS REQ_CNT
+
+                FROM TB_MATCH AS TM
+                 LEFT JOIN
+                TB_REQUEST AS TR
+                 ON TM.MATCH_SEQ = TR.REQ_MATCH_SEQ
+                  AND TR.REQ_USER_SEQ = #{reqUserSeq}
+                     AND TR.REQ_STATUS = 'Y'
+                 WHERE TM.MATCH_SEQ = #{matchSeq}
+        ]]>
+
     </select>
 
 </mapper>

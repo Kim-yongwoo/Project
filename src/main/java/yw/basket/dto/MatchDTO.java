@@ -29,4 +29,7 @@ public class MatchDTO {
     private int reqCnt;         //신청인원
     private int reqSeq;         //신청번호
     private String matchDateStatus;  //현재시간상태
+    private int reqMatchSeq; //경기시퀀스
+    private int reqUserSeq;
+
 }
