@@ -133,7 +133,6 @@
 <body><!-- Responsive navbar-->
 <%@include file="headerMenu.jsp"%>
 
-
 <div style="margin-left: 200px;">
 	<div><%= user.getUserSeq() %> <%= user.getUserId() %> 님</div>
 	<input type="button" onclick="location.href='/matchReg'" value="매칭시작"></div>
@@ -143,7 +142,7 @@
 	<br><br>
 	<div style="margin-left: 200px;">
 
-
+		<img src="<%=image_link%>" style="float: right; margin-right: 150px; width: 500px; height: 700px;">
 	<div class="btn-div">
 		<div class="btn-group">
 			<br>
@@ -158,6 +157,7 @@
 			<br>
 		</div>
 		<br>
+		<%--<img src="<%=image_link%>" style="float: right; margin-right: 150px; width: 500px; height: 700px;">--%>
 	</div>
 
 	<thead>
@@ -197,7 +197,6 @@
 <%--<form id="matchStartForm" method="post">
 </form>--%>
 
-<img src="<%=image_link%>" style="float: right; margin-right: 150px; width: 500px; height: 700px;">
 
 </header>
 <!-- Content section-->

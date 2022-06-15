@@ -42,6 +42,7 @@ public class MainController {
         matchDTO.setMatchRegSeq(user.getUserSeq());
 
         List<MatchDTO> matchDTOList = matchService.matchDTOList(matchDTO);
+
         String word = ApiUtil.search("스테판 커리");
         System.out.println("결과 값 : " +word);
         model.addAttribute("matchDTOList", matchDTOList);

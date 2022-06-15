@@ -27,7 +27,7 @@
         <appender-ref ref="CONSOLE"/>
     </root>
 
-    <Logger name="yw.basket" level="info" additivity="false">
+    <Logger name="yw.basket" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="File"/>
     </Logger>

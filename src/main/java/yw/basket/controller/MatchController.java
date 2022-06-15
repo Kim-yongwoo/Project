@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import sun.plugin.dom.core.Element;
 import yw.basket.dto.BoardDTO;
 import yw.basket.dto.MatchDTO;
 import yw.basket.dto.RequestDTO;
@@ -21,6 +22,7 @@ import yw.basket.service.IUserService;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Slf4j
@@ -73,29 +75,38 @@ public class MatchController {
         return 1;
     }
 
-    //경기 상세 조회
+       //경기 상세 조회
     @RequestMapping("/matchDetail/{matchSeq}")
-    public String matchDetail(MatchDTO matchDTO, Model model, @PathVariable int matchSeq) throws Exception {
-        log.debug("matchDTO.getMatchSeq() >>>" + matchSeq);
+    public String matchDetail(MatchDTO matchDTO, Model model, HttpSession session, @PathVariable int matchSeq) throws Exception {
+        UserDTO user = (UserDTO) session.getAttribute("user");
 
         matchDTO.setMatchSeq(matchSeq);
+        matchDTO.setReqUserSeq(user.getUserSeq());
         matchDTO = matchService.matchDetail(matchDTO);
         model.addAttribute("matchDTO", matchDTO);
         return "/match/matchDetail";
 
     }
 
-
-
-   /* @RequestMapping("/matchReq")
-    public String matchReq(MatchDTO matchDTO, HttpSession session) throws Exception {
-
+    //신청정보 리스트
+    @RequestMapping("/reqList")
+    public String reqList(MatchDTO matchDTO, RequestDTO requestDTO, HttpSession session, Model model) throws Exception {
+        //user에 세션 담기
         UserDTO user = (UserDTO) session.getAttribute("user");
 
-        matchDTO.setMatchSeq(matchSeq);
-        matchDTO = matchService.matchDetail(matchDTO);
-        model.addAttribute("matchDTO", matchDTO);
-        return "/match/matchDetail";
-    }*/
+        matchDTO.setMatchSeq(matchDTO.getMatchSeq());
+        matchDTO.setReqUserSeq(user.getUserSeq());
+        matchDTO.setReqMatchSeq(matchDTO.getMatchSeq());
+        matchDTO.setReqStatus(requestDTO.getReqStatus());
+
+        List<MatchDTO> reqList = matchService.reqList(matchDTO);
+
+        model.addAttribute("reqList", reqList);
+
+        return "/request/reqList";
+
+    }
+
+
 
 }

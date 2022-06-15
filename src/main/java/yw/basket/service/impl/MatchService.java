@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import yw.basket.dto.BoardDTO;
 import yw.basket.dto.MatchDTO;
+import yw.basket.dto.RequestDTO;
 import yw.basket.mapper.IMatchMapper;
 import yw.basket.mapper.IUserMapper;
 import yw.basket.service.IMatchService;
@@ -43,6 +44,12 @@ public class MatchService implements IMatchService {
     @Override
     public int matchReqSave(MatchDTO matchDTO) throws Exception {
         return matchMapper.matchReqSave(matchDTO);
+    }
+
+
+    @Override
+    public List<MatchDTO> reqList(MatchDTO matchDTO) throws Exception {
+        return matchMapper.reqList(matchDTO);
     }
 
 

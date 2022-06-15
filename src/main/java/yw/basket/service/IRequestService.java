@@ -17,4 +17,5 @@ public interface IRequestService {
 
     // 매칭 참여 취소
     int matchReqCncSave(RequestDTO requestDTO) throws Exception;
+
 }

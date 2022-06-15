@@ -26,7 +26,7 @@
 							<a class="dropdown-item" href="/mypage">내정보</a>--%>
 
 					<li class="nav-item"><a href="/my" class="nav-link">나의활동</a></li>
-					<li class="nav-item"><a href="/reqInfo" class="nav-link">신청내역</a></li>
+					<li class="nav-item"><a href="/reqList" class="nav-link">신청내역</a></li>
 					<li class="nav-item"><a href="/mypage" class="nav-link">내정보</a></li>
 
 					</li>

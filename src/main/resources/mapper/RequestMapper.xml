@@ -27,4 +27,6 @@
         WHERE   REQ_SEQ = #{reqSeq}
     </update>
 
+
+
 </mapper>
