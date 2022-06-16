@@ -24,4 +24,7 @@ public interface IMatchMapper {
 
     //신청 리스트
     List<MatchDTO> reqList(MatchDTO matchDTO) throws Exception;
+
+    //나의 활동
+    List<MatchDTO> my(MatchDTO matchDTO) throws Exception;
 }

@@ -20,7 +20,8 @@
 </head>
 <body>
 <%@include file="../headerMenu.jsp"%>
-<h1>신청 정보</h1>
+<div style="margin-left: 200px;">
+<h1>나의 활동</h1>
 <div class="btn-div">
 
     <div class="btn-group">

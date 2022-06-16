@@ -20,6 +20,8 @@
 </head>
 <body>
 <%@include file="../headerMenu.jsp"%>
+
+<div style="margin-left: 200px;">
 <h1>신청 정보</h1>
 <div class="btn-div">
 

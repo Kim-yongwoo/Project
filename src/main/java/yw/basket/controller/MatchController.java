@@ -107,6 +107,24 @@ public class MatchController {
 
     }
 
+    //나의 활동
+    @RequestMapping("/my")
+    public String my(MatchDTO matchDTO, RequestDTO requestDTO, HttpSession session, Model model) throws Exception {
+        //user에 세션 담기
+        UserDTO user = (UserDTO) session.getAttribute("user");
+
+        matchDTO.setMatchSeq(matchDTO.getMatchSeq());
+        matchDTO.setReqUserSeq(user.getUserSeq());
+        matchDTO.setReqMatchSeq(matchDTO.getMatchSeq());
+        matchDTO.setReqStatus(requestDTO.getReqStatus());
+
+        List<MatchDTO> my = matchService.my(matchDTO);
+
+        model.addAttribute("reqList", my);
+
+        return "/request/my";
+
+    }
 
 
 }

@@ -52,5 +52,11 @@ public class MatchService implements IMatchService {
         return matchMapper.reqList(matchDTO);
     }
 
+    //나의 활동
+    @Override
+    public List<MatchDTO> my(MatchDTO matchDTO) throws Exception {
+        return matchMapper.my(matchDTO);
+    }
+
 
 }

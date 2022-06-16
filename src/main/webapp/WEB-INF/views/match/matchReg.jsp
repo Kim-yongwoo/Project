@@ -138,6 +138,7 @@
                 <option value="10">10</option>
             </select>
         </div>
+
         <div class="form-group">
             <input type="button" id="matchRegSave" value="매칭시작">
         </div>
