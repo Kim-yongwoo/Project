@@ -9,6 +9,7 @@
 <head>
     <%@include file="../header.jsp"%>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <title>마이페이지</title>
 
     <script type="text/javascript"> //자바스크립트를 쓴다는 것
@@ -38,6 +39,7 @@
 </head>
 <body>
 <%@include file="../headerMenu.jsp"%>
+<div style="margin-left: 200px;">
 <div class="w3-content w3-container w3-margin-top"></div>
     <div class="w3-container w3-card-4"></div>
         <div class="w3-center w3-large w3-margin-top">
@@ -70,15 +72,14 @@
                     <input type="button" onclick="location.href='/memberModify'" value="회원정보 수정">
                     <input type="button" onclick="location.href='/updatePw'" value="비밀번호 변경">
                     <input type="button" id="memberOut" value="회원탈퇴">
-
                 </p>
             </form>
         </div>
 
             <br/>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-<input type="button" onclick="location.href='/main'" value="뒤로가기">
+
+<%--<input type="button" onclick="location.href='/main'" value="뒤로가기">--%>
 </div>
 
 <%@include file="../footer.jsp"%>

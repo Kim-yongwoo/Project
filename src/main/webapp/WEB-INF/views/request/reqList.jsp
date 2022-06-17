@@ -22,7 +22,7 @@
 <%@include file="../headerMenu.jsp"%>
 
 <div style="margin-left: 200px;">
-<h1>신청 정보</h1>
+<h3>나의활동</h3>
 <div class="btn-div">
 
     <div class="btn-group">

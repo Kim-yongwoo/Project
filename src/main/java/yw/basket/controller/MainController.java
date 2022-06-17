@@ -33,8 +33,6 @@ public class MainController {
     }
 
 
-
-
     @GetMapping(value = "/main")
     public String main(MatchDTO matchDTO, HttpSession session, Model model) throws Exception {
 

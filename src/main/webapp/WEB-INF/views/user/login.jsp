@@ -72,11 +72,11 @@
                             <div class="form-group">
                                 <button type="button" id="signIn" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
                             </div>
-                            <div class="form-group d-md-flex">
+                           <%-- <div class="form-group d-md-flex">
                                 <div class="w-100 text-md-right">
-                                    <a href="#">Forgot Id</a>
-                                </div>
-                            </div>
+                                    <a href="#"> Id</a>
+                                </div>Forgot
+                            </div>--%>
                             <div class="form-group d-md-flex">
                                 <div class="w-100 text-md-right">
                                     <a href="#">Forgot Password</a>

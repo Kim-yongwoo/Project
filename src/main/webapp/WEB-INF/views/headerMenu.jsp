@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row justify-content-between">
 			<div class="col">
-				<a class="navbar-brand" href="index.html">Basket <span>Life</span></a>
+				<a class="navbar-brand" href="/main">Basket <span>Life</span></a>
 			</div>
 		</div>
 	</div>
@@ -25,12 +25,12 @@
 							<a class="dropdown-item" href="/reqInfo">신청내역</a>
 							<a class="dropdown-item" href="/mypage">내정보</a>--%>
 
-					<li class="nav-item"><a href="/my" class="nav-link">나의활동</a></li>
-					<li class="nav-item"><a href="/reqList" class="nav-link">신청내역</a></li>
+					<%--<li class="nav-item"><a href="/my" class="nav-link">나의활동</a></li>--%>
+					<li class="nav-item"><a href="/reqList" class="nav-link">나의활동</a></li>
 					<li class="nav-item"><a href="/mypage" class="nav-link">내정보</a></li>
 
 					</li>
-					<li class="nav-item"><a href="/" class="nav-link">Chat</a></li>
+					<li class="nav-item"><a href="/chat" class="nav-link">Chat</a></li>
 					<li class="nav-item"><a href="/boardList" class="nav-link">Notice</a></li>
 				</ul>
 			</div>

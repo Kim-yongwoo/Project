@@ -210,7 +210,7 @@
 </section>
 <!-- Image element - set the background image for the header in the line below-->
 <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
-<div style="height: 20rem"></div>
+<%--<div style="height: 20rem"></div>--%>
 </div>
 <!-- Content section-->
 <section class="py-5">
@@ -220,7 +220,7 @@
 		</div>
 	</div>
 </section>
-<br><br><br><br>
+
 <%@include file="footer.jsp"%>
 
 </body>

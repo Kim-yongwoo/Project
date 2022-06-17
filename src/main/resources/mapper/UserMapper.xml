@@ -42,6 +42,7 @@
     <select id="loginProc" resultType="UserDTO">
         SELECT USER_SEQ
               ,USER_ID
+              ,USER_NAME
           FROM TB_USER
          WHERE USER_ID = #{userId}
            AND USER_PW = #{userPw}

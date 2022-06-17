@@ -21,7 +21,7 @@
 <body>
 <%@include file="../headerMenu.jsp"%>
 <div style="margin-left: 200px;">
-<h1>나의 활동</h1>
+<h3>나의 활동</h3>
 <div class="btn-div">
 
     <div class="btn-group">

@@ -13,6 +13,7 @@
                 let seoul = ["마포", "강서", "용산"];
                 let gyeonggi = ["파주", "고양", "김포"];
 
+
                 // 지역 콤보값
                 let matchLocM = $("#matchLocM").val();
 
@@ -44,6 +45,8 @@
                     $("#matchLocD").append(option);
                 }
             })
+
+
 
             $("#matchRegSave").click(function(){
 
