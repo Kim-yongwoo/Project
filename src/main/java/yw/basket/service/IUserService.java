@@ -31,4 +31,10 @@ public interface IUserService {
 
     //회원탈퇴
     int memberOut(UserDTO userDTO) throws Exception;
+
+    //아이디, 이메일로 회원체크
+    int emailCheck(UserDTO userDTO) throws Exception;
+
+    //임시비밀번호 수정
+    int updateOncePw(UserDTO userDTO) throws Exception;
 }

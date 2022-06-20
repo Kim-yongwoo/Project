@@ -12,6 +12,7 @@
 			 , TB.BOARD_REG_DATE
 			 , TB.BOARD_REG_SEQ
 			 , TU.USER_NAME
+			 , TB.BOARD_USER_NAME
 		FROM TB_BOARD AS TB
   INNER JOIN TB_USER AS TU
 		  ON TU.USER_SEQ = TB.BOARD_REG_SEQ
@@ -28,14 +29,16 @@
 			BOARD_TITLE
 		,   BOARD_CONTENTS
 		,   BOARD_REG_SEQ
-		,   BOARD_REG_DATE
+		,   BOARD_REG_DATE,
+		 	BOARD_USER_NAME
 		)
 		VALUES
 	    (
 			    #{boardTitle}
 			  , #{boardContents}
 			  , #{boardRegSeq}
-			  , NOW()
+			  , NOW(),
+	     		#{boardUserName}
 	    )
 	</insert>
 
@@ -47,7 +50,8 @@
 			 ,BOARD_TITLE
 			 ,BOARD_CONTENTS
 			 ,BOARD_REG_SEQ
-			 ,BOARD_REG_DATE
+			 ,BOARD_REG_DATE,
+		    BOARD_USER_NAME
 		FROM
 			TB_BOARD
 		WHERE

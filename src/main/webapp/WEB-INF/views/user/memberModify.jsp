@@ -9,6 +9,7 @@
 <html>
 <head>
     <%@include file="../header.jsp"%>
+
     <script type="text/javascript">
         $(document).ready(function(){
             $("#updateUserInfo").click(function(){
@@ -35,7 +36,8 @@
 </head>
 <body>
 <%@include file="../headerMenu.jsp"%>
-<h2>[회원정보 수정]</h2>
+<div style="margin-left: 200px;">
+<h3>회원정보 수정</h3>
 <form id="updateUserInfoForm" method="post">
     <p>
         <label>이름 : </label>
@@ -77,7 +79,7 @@
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 <input type="button" onclick="location.href='/mypage'" value="뒤로가기">
-
+</div>
 <%@include file="../footer.jsp"%>
 </body>
 </html>

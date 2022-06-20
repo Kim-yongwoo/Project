@@ -4,20 +4,19 @@ package yw.basket.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import sun.plugin.dom.core.Element;
-import yw.basket.dto.BoardDTO;
+
 import yw.basket.dto.MatchDTO;
 import yw.basket.dto.RequestDTO;
 import yw.basket.dto.UserDTO;
 import yw.basket.service.IMatchService;
 import yw.basket.service.IRequestService;
 import yw.basket.service.IUserService;
+import yw.basket.util.ApiUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -98,6 +97,9 @@ public class MatchController {
         matchDTO.setReqUserSeq(user.getUserSeq());
         matchDTO.setReqMatchSeq(matchDTO.getMatchSeq());
         matchDTO.setReqStatus(requestDTO.getReqStatus());
+
+        String word = ApiUtil.search("스테판 커리");
+        model.addAttribute("image_link", word);
 
         List<MatchDTO> reqList = matchService.reqList(matchDTO);
 

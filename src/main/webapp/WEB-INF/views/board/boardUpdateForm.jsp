@@ -10,18 +10,20 @@
 %>
 <html>
 <head>
+    <%@include file="../header.jsp"%>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <%--<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">--%>
+    <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
     <title>게시글 수정</title>
 </head>
 <body>
-    <h2>게시판 수정</h2>
-    <form action="/boardUpdate" method="post">
-     <div><label>글번호</label>
-         <input name="boardSeq" readonly="readonly" value="<%=boardDTO.getBoardSeq()%>">
-     </div>
+<%@include file="../headerMenu.jsp"%>
+<h2>게시판 수정</h2>
+<form action="/boardUpdate" method="post">
+    <div><label>글번호</label>
+        <input name="boardSeq" readonly="readonly" value="<%=boardDTO.getBoardSeq()%>">
+    </div>
     <div><label>제목</label>
         <input name="boardTitle" readonly="readonly" value="<%=boardDTO.getBoardTitle()%>">
     </div>
@@ -34,7 +36,7 @@
 
     <button type="submit">수정완료</button>
     <button type="button" onclick="location.href='/boardList'">돌아가기</button>
-    </form>
+</form>
 <input type="hidden" name="boardSeq" value="<%=boardDTO.getBoardSeq()%>">
 
 

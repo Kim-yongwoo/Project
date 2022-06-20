@@ -17,11 +17,11 @@
 </p>
 <div id="map" style="width:100%;height:350px;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=00a186fbd33299fe093bf460b93fbc8d&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b1ccaa5d1acaabd5c103939f3bce86b4&libraries=services"></script>
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 			mapOption = {
-				center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+				center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표s
 				level: 3 // 지도의 확대 레벨
 			};
 

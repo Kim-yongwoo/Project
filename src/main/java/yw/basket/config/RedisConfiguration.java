@@ -13,7 +13,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 @Configuration
 public class RedisConfiguration {
 
-    @Value("192.168.149.129")
+    @Value("43.200.61.179")
     private String redisHost;
 
     @Value("6379")

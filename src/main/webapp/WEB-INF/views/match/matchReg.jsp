@@ -9,9 +9,8 @@
         $(document).ready(function(){
             $("#matchLocM").change(function(){
 
-                // 지역상세 콤보값 배열 선언
-                let seoul = ["마포", "강서", "용산"];
-                let gyeonggi = ["파주", "고양", "김포"];
+               /* // 지역상세 콤보값 배열 선언
+                let seoul = ["마포", "강서", "용산"];*/
 
 
                 // 지역 콤보값
@@ -21,12 +20,21 @@
                 let changeItem;
 
                 // 지역 값이 '서울'인 경우
-                if (matchLocM == "서울") {
-                    changeItem = seoul;
-                }
-                // 지역 값이 '경기'인 경우
-                else if (matchLocM == "경기") {
-                    changeItem = gyeonggi;
+                if (matchLocM == "경기") {
+                    $.ajax({
+                        type: "get"
+                        , url: "/getGGInfo"
+                        , dataType: 'json'
+                        , success: function(res) {
+                            for(let i = 0; i < res.length; i++) {
+                                let ggName = res[i].ggName;
+                                let option = "<option value='" + ggName + "'>" + ggName + "</option>";
+
+                                // 지역상세 콤보값 추가
+                                $("#matchLocD").append(option);
+                            }
+                        }
+                    })
                 }
                 // 지역 값이 '지역선택'인 경우
                 else {
@@ -35,17 +43,42 @@
 
                 // 지역상세 콤보값 초기화
                 $("#matchLocD").empty();
+                $("#matchLocD").append('<option value="">지역상세선택</option>');
 
-                // changeItem.length 배열의 갯수만큼 지역상세 콤보에 추가 (한번에 한개씩 추가)
+
+                /*// changeItem.length 배열의 갯수만큼 지역상세 콤보에 추가 (한번에 한개씩 추가)
                 for(let i=0; i<changeItem.length; i++) {
                     // 옵션값 수동 생성
                     let option = "<option value='" + changeItem[i] + "'>" + changeItem[i] + "</option>";
 
                     // 지역상세 콤보값 추가
                     $("#matchLocD").append(option);
-                }
+                }*/
             })
 
+            $("#matchLocD").change(function(){
+                let siName = $("#matchLocD").val();
+                $("#matchGmName").empty();
+                $("#matchGmName").append('<option value="">구장선택</option>');
+
+                if(siName != '') {
+                    $.ajax({
+                        type: "get"
+                        , url: "/getGroundInfo"
+                        , dataType: 'json'
+                        , data: {
+                            'siName' : siName
+                        }
+                        , success: function(res) {
+
+                            for(let i = 0; i < res.length; i++) {
+                                $("#matchGmName").append("<option value='" + res[i] + "'>" + res[i] + "</option>");
+                            }
+                        }
+                    })
+                }
+
+            });
 
 
             $("#matchRegSave").click(function(){
@@ -93,14 +126,17 @@
         </div>
         <!-- 구장이름-->
         <div class="form-group">
+
             <label for="matchGmName">구장 이름</label>
-            <input type="text" class="form-control" id="matchGmName" name="matchGmName" value="테스트구장이름">
+            <select id="matchGmName" class="form-control" name="matchGmName">
+                <option value="">구장선택</option>
+            </select>
         </div>
         <!-- 구장장소 -->
-        <div class="form-group">
+        <%--<div class="form-group">
             <label for="matchGmAddr">구장 장소</label>
             <input type="text" class="form-control" id="matchGmAddr" name="matchGmAddr" value="테스트구장장소">
-        </div>
+        </div>--%>
         <!-- 경기일자 -->
         <div class="form-group">
             <label for="matchDate">경기일자</label>

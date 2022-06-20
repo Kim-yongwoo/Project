@@ -135,10 +135,10 @@
         <input type="text" class="form-control" id="matchGmName" name="matchGmName" value="<%=matchDTO.getMatchGmName()%>" readonly>
     </div>
     <!-- 구장장소 -->
-    <div class="form-group">
+   <%-- <div class="form-group">
         <label for="matchGmAddr">구장 장소</label>
         <input type="text" class="form-control" id="matchGmAddr" name="matchGmAddr" value="<%=matchDTO.getMatchGmAddr()%>" readonly>
-    </div>
+    </div>--%>
     <!-- 경기일자 -->
     <div class="form-group">
         <label for="matchDate">경기일자</label>
@@ -175,7 +175,7 @@
         <% } else if (!matchDTO.getReqStatus().equals("Y")) { %>
         <th><input type="button" value="참여" onclick="matchReq1(<%=matchDTO.getMatchSeq()%>)" /></th>
         <% } else { %>
-        <th><input type="button" value="취소" onclick="matchReqCnc(<%=matchDTO.getReqSeq()%>)" /></th>
+        <th><input type="button" value="신청취소" onclick="matchReqCnc(<%=matchDTO.getReqSeq()%>)" /></th>
         <% } %>
     </div>
 

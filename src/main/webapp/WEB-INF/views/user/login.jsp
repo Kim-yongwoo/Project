@@ -4,7 +4,7 @@
 <head>
     <%@include file="../header.jsp"%>
 
-    <script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript"> //자바스크립트를 쓴다는 것
     $(document).ready(function(){
 
@@ -53,7 +53,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-10">
                 <div class="wrap d-md-flex">
-                    <div class="img" style="background-image: url(../../../images/basketball-1.jpg);"></div>
+                    <div class="img" style="background-image: url(/images/basketball-1.jpg);"></div>
                     <div class="login-wrap p-4 p-md-5">
                         <div class="d-flex">
                             <div class="w-100">
@@ -79,7 +79,7 @@
                             </div>--%>
                             <div class="form-group d-md-flex">
                                 <div class="w-100 text-md-right">
-                                    <a href="#">Forgot Password</a>
+                                    <a href="/findPw">Forgot Password</a>
                                 </div>
                             </div>
 

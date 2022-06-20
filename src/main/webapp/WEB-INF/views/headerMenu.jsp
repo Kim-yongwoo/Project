@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- Responsive navbar-->
-<section class="ftco-section">
+<section class="ftco-section" style="padding: 7em 0 0 0">
 	<div class="container">
 		<div class="row justify-content-between">
 			<div class="col">

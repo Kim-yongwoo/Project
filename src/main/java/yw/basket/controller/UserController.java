@@ -1,6 +1,7 @@
 package yw.basket.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.HttpRequestHandler;
@@ -31,6 +32,11 @@ public class UserController {
         session.setAttribute("userInfo", "Test");
         return "redirect:/login";
     }*/
+
+    @GetMapping(value = "/")
+    public String title() {
+        return "/login";
+    }
 
     /**
      * @param : N/A
@@ -164,6 +170,9 @@ public class UserController {
         UserDTO user = (UserDTO) session.getAttribute("user");
         UserDTO userinfo = userService.getUserInfo(user);
 
+        String word = ApiUtil.search("스테판 커리");
+        model.addAttribute("image_link", word);
+
         model.addAttribute("userinfo", userinfo);
         return "/user/mypage";
     }
@@ -197,10 +206,36 @@ public class UserController {
         return userService.memberOut(userDTO);
     }
 
-    // 아이디 찾기 폼
-    @RequestMapping(value = "/findId")
-    public String findId() throws Exception{
-        return "/user/findId";
+    //이메일 발송
+    @GetMapping(value = "/emailCheck")
+    @ResponseBody
+    public int emailCheck(HttpServletRequest request) throws Exception {
+        log.info("controller.emailCheck start");
+
+        String userId = request.getParameter("userId");
+        String userEmail = request.getParameter("userEmail");
+        log.info("userId : " + userId);
+        log.info("userEmail : " + userEmail);
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserId(userId);
+        userDTO.setUserEmail(userEmail);
+
+        int res = userService.emailCheck(userDTO);
+        log.info("이메일체크결과 : " + res);
+        if(res > 0) {
+            String newPw = UUID.randomUUID().toString();
+            userDTO.setUserPwNew(EncryptUtil.encHashSHA256(newPw));
+            int uptRes = userService.updateOncePw(userDTO);
+            log.info("임시비밀번호 변경결과 : " + uptRes);
+            if(uptRes > 0) {
+                MailUtil.sendAuthEmail(userEmail, "Basket Life 임시 비밀번호 발급", newPw);
+            } else {
+                res = 0;
+            }
+
+        }
+        return res;
     }
 
 

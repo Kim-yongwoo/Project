@@ -56,6 +56,8 @@ public class BoardController {
         UserDTO user = (UserDTO) session.getAttribute("user");
 
         boardDTO.setBoardRegSeq(user.getUserSeq());
+        boardDTO.setBoardUserName(user.getUserName());
+
         boardService.insertBoard(boardDTO);
 
         log.info(String.valueOf(boardDTO));

@@ -42,9 +42,9 @@ public class MainController {
         List<MatchDTO> matchDTOList = matchService.matchDTOList(matchDTO);
 
         String word = ApiUtil.search("스테판 커리");
+        model.addAttribute("image_link", word);
         System.out.println("결과 값 : " +word);
         model.addAttribute("matchDTOList", matchDTOList);
-        model.addAttribute("image_link", word);
         return "/main";
     }
 
