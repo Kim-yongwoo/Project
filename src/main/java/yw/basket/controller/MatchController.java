@@ -98,11 +98,16 @@ public class MatchController {
         matchDTO.setReqMatchSeq(matchDTO.getMatchSeq());
         matchDTO.setReqStatus(requestDTO.getReqStatus());
 
-        String word = ApiUtil.search("스테판 커리");
-        model.addAttribute("image_link", word);
+        String word4 = ApiUtil.search("스테판 커리");
+        String word5 = ApiUtil.search("르브론 제임스");
+        String word6 = ApiUtil.search("케빈 듀란트");
+        model.addAttribute("image_link4", word4);
+        model.addAttribute("image_link5", word5);
+        model.addAttribute("image_link6", word6);
+
 
         List<MatchDTO> reqList = matchService.reqList(matchDTO);
-
+        log.info("reqSize : " + reqList.size());
         model.addAttribute("reqList", reqList);
 
         return "/request/reqList";

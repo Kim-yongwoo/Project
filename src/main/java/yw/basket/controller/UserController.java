@@ -1,5 +1,6 @@
 package yw.basket.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
@@ -148,29 +149,50 @@ public class UserController {
         UserDTO userinfo = userService.getUserInfo(user);
 
         model.addAttribute("userinfo", userinfo);
+
         return "/user/memberModify";
     }
 
     //회원 정보 수정
     @PostMapping(value = "/memberModifySave")
     @ResponseBody
-    public int memberModifySave(UserDTO userDTO, HttpSession session) throws Exception {
+    public int memberModifySave(HttpSession session, Model model, HttpServletRequest request, @RequestParam Map<String, String> map) throws Exception {
+
+        UserDTO user = (UserDTO) session.getAttribute("user");
+
 
         //session을 통해서 user에 값을 받고  여기 user에는 세션에서 받은 id와 seq가 있따
         //getUserInfo 메소드에 user를 파라미터로 보내고 받아온 결과값을 userDTO에 담는다
-        UserDTO user = (UserDTO) session.getAttribute("user");
+        String userName = CmmUtil.nvl(map.get("userName"));
+        String userEmail = CmmUtil.nvl(map.get("userEmail"));
+        String userNickname = CmmUtil.nvl(map.get("userNickname"));
+        String userGender = CmmUtil.nvl(map.get("userGender"));
+        String userLevel = CmmUtil.nvl(map.get("userLevel"));
+        String userPlayer = CmmUtil.nvl(map.get("userPlayer"));
+
+        UserDTO userDTO = new UserDTO();
+
+        userDTO.setUserName(userName);
+        userDTO.setUserEmail(userEmail);
+        userDTO.setUserNickname(userNickname);
+        userDTO.setUserGender(userGender);
+        userDTO.setUserLevel(userLevel);
+        userDTO.setUserplayer(userPlayer);
 
         userDTO.setUserSeq(user.getUserSeq());
+
         return userService.memberModifySave(userDTO);
+
     }
     //마이페이지 이동
     @RequestMapping(value = "/mypage")
-    public String usermypage(Model model, HttpSession session) throws Exception {
+    public String usermypage(UserDTO userDTO, Model model, HttpSession session) throws Exception {
 
         UserDTO user = (UserDTO) session.getAttribute("user");
         UserDTO userinfo = userService.getUserInfo(user);
 
-        String word = ApiUtil.search("스테판 커리");
+        //이미지 가져오기
+        String word = ApiUtil.search(userinfo.getUserplayer());
         model.addAttribute("image_link", word);
 
         model.addAttribute("userinfo", userinfo);

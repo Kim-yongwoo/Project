@@ -37,12 +37,13 @@ public class ApiUtil {
 //   이미지 가져오기 1개 
      JSONObject jobject = new JSONObject(responseBody_image);
      JSONArray items = jobject.getJSONArray("items");
+
+     int randomIdx = (int) (Math.random() * 10);
      //System.out.println(items.getJSONObject(0).get("link"));
-     String result = (String) items.getJSONObject(3).get("link");
-     
-     
-     
-    return result;
+     String result = (String) items.getJSONObject(randomIdx).get("link");
+
+
+     return result;
 }
 
 

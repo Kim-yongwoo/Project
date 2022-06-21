@@ -41,9 +41,12 @@ public class MainController {
 
         List<MatchDTO> matchDTOList = matchService.matchDTOList(matchDTO);
 
-        String word = ApiUtil.search("스테판 커리");
-        model.addAttribute("image_link", word);
-        System.out.println("결과 값 : " +word);
+        String word1 = ApiUtil.search("스테판 커리");
+        String word2 = ApiUtil.search("르브론 제임스");
+        String word3 = ApiUtil.search("케빈 듀란트");
+        model.addAttribute("image_link1", word1);
+        model.addAttribute("image_link2", word2);
+        model.addAttribute("image_link3", word3);
         model.addAttribute("matchDTOList", matchDTOList);
         return "/main";
     }
@@ -54,6 +57,10 @@ public class MainController {
         return "match/match";
     }
 
-
-
+    //이미지 검색 API 호출
+    @PostMapping(value = "/searchImageApi")
+    @ResponseBody
+    public String searchImageApi(String playerName) throws Exception {
+        return ApiUtil.search(playerName);
+    }
 }

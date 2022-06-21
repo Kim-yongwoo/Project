@@ -22,6 +22,7 @@ public class UserDTO {
     private String userStatus;
     private Timestamp joinDt;
     private String userPwNew;
+    private String userplayer;
 
     @Override
     public String toString() {

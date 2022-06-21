@@ -20,6 +20,7 @@
         , USER_STATUS
         , JOIN_DT
         , USER_PW_NEW
+        , USER_PLAYER
         )
         VALUES
         (
@@ -35,6 +36,7 @@
         , 'Y'
         , NOW()
         , #{userPwNew}
+        , #{userPlayer}
         )
 
     </insert>
@@ -62,7 +64,8 @@
             USER_EMAIL,
             USER_NICKNAME,
             USER_GENDER,
-            USER_LEVEL
+            USER_LEVEL,
+            USER_PLAYER
         FROM TB_USER
         WHERE USER_SEQ = #{userSeq}
     </select>
@@ -77,6 +80,7 @@
             , USER_NICKNAME = #{userNickname}
             , USER_GENDER = #{userGender}
             , USER_LEVEL = #{userLevel}
+            , USER_PLAYER = #{userplayer}
         WHERE USER_SEQ = #{userSeq}
 
 

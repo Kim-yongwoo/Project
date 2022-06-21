@@ -116,6 +116,7 @@
 </head>
 <body>
 <%@include file="../headerMenu.jsp"%>
+<div class="container">
 <h1>매치상세</h1>
 <form id="matchReqForm">
     <input type="hidden" id="matchSeq" name="matchSeq" value="<%=matchDTO.getMatchSeq()%>">
@@ -180,7 +181,7 @@
     </div>
 
 </form>
-
+</div>
 <%@include file="../footer.jsp"%>
 </body>
 </html>

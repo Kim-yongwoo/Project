@@ -7,7 +7,9 @@
 	List<MatchDTO> matchDTOList = (List<MatchDTO>) request.getAttribute("matchDTOList");
 
 	//Api 사진
-	String image_link = (String) request.getAttribute("image_link");
+	String image_link1 = (String) request.getAttribute("image_link1");
+	String image_link2 = (String) request.getAttribute("image_link2");
+	String image_link3 = (String) request.getAttribute("image_link3");
 
 	UserDTO user = (UserDTO) session.getAttribute("user");
 
@@ -124,11 +126,32 @@
 					}
 				})
 			})
+
+			let playerNamesIdx = 0;
+			let playerNames = ["마이클 조던", "클레이 탐슨", "르브론 제임스", "스테판 커리", "야니스 아데토쿤보", "제임스 하든"];
+
+			// 사진 클릭
+			$(".imgBasket").click(function(){
+
+				let imgId = $(this).attr("id");
+
+				// 선수이름 배열 인덱스 초기화
+				if (playerNamesIdx >= playerNames.length) {
+					playerNamesIdx = 0;
+				}
+
+				$.ajax({
+					type: "POST"
+					, url: "/searchImageApi"
+					, data: {"playerName" : playerNames[playerNamesIdx]}
+					, success: function(image_link) {
+						$("#" + imgId).attr("src", image_link);
+						playerNamesIdx++;
+					}
+				})
+			})
 		});
 	</script>
-
-
-
 </head>
 <body><!-- Responsive navbar-->
 <%@include file="headerMenu.jsp"%>
@@ -139,88 +162,55 @@
 <%--<input style="float: left; margin-right: 150px; width: 500px; height: 700px;">--%>
 <form id="getMatchForm" method="post">
 
-	<br><br>
-	<div style="margin-left: 200px;">
-
-		<img src="<%=image_link%>" style="float: right; margin-right: 150px; width: 500px; height: 600px;">
-	<div class="btn-div">
-		<div class="btn-group">
-			<br>
-			<a class="btn btn-outline-secondary">경기날짜</a>
-			<a class="btn btn-outline-secondary">경기시간</a>
-		<%--	<a class="btn btn-outline-secondary">위치</a>--%>
-
-			<a class="btn btn-outline-secondary" style="margin-rleft:0.5%;">구장이름</a>
-			<%--<a class="btn btn-outline-secondary">구장주소</a>--%>
-			<a class="btn btn-outline-secondary">성별구분</a>
-			<a class="btn btn-outline-secondary">레벨</a>
-			<a class="btn btn-outline-secondary">참여인원</a>
-			<br>
-		</div>
-		<br>
-		<%--<img src="<%=image_link%>" style="float: right; margin-right: 150px; width: 500px; height: 700px;">--%>
+<div class="container">
+	<div class="row vertical-center" style="font-weight: bold; font-size: 12pt; line-height: 5; border-bottom: 1px solid #cccccc">
+		<div class="col-lg-2 text-center">경기날짜</div>
+		<div class="col-lg-2 text-center">경기시간</div>
+		<div class="col-lg-3 text-center">구장이름</div>
+		<div class="col-lg-1 text-center">성별구분</div>
+		<div class="col-lg-2 text-center">레벨</div>
+		<div class="col-lg-1 text-center">참여인원</div>
+		<div class="col-lg-1 text-center">신청</div>
 	</div>
-
-	<thead>
-
 	<%
 		for (MatchDTO matchDTO : matchDTOList) {
 	%>
-	<br>
-		<tr>
-
-			<%--<th><%=matchDTO.getMatchSeq()%></th>--%>
-			<th><%=matchDTO.getMatchDate()%></th>
-			<th><%=matchDTO.getMatchTime()%></th>
-			<%--<th><%=matchDTO.getMatchLocM()%></th>--%>
-			<th><%=matchDTO.getMatchLocD()%></th>
-			<th><a href="/matchDetail/<%=matchDTO.getMatchSeq()%>"><%=matchDTO.getMatchGmName()%></a></th>
-			<%--<th><%=matchDTO.getMatchGmAddr()%></th>--%>
-			<th><%=matchDTO.getMatchGender()%></th>
-			<th><%=matchDTO.getMatchLevel()%></th>
-			<th><%=matchDTO.getReqCnt()%> / <%=matchDTO.getMatchMem()%></th>
-
-			<% if (!matchDTO.getMatchDateStatus().equals("Y") || matchDTO.getReqCnt() == matchDTO.getMatchMem()) { %>
-				<th>마감</th>
-			<% } else if (!matchDTO.getReqStatus().equals("Y")) { %>
-				<th><input type="button" value="참여" onclick="matchReq(<%=matchDTO.getMatchSeq()%>)" /></th>
-			<% } else { %>
-				<th><input type="button" value="취소" onclick="matchReqCnc(<%=matchDTO.getReqSeq()%>)" /></th>
-			<% } %>
-		</tr>
-	<% } %>
-	</thead>
+	<div class="row" style="font-size: 12pt; text-align: center;  border-bottom: 1px solid #cccccc" >
+		<div class="col-lg-2"><%=matchDTO.getMatchDate()%></div>
+		<div class="col-lg-2"><%=matchDTO.getMatchTime()%></div>
+		<div class="col-lg-3" style="text-align: left">
+			<a href="/matchDetail/<%=matchDTO.getMatchSeq()%>"><%=matchDTO.getMatchLocD()%> <%=matchDTO.getMatchGmName()%></a></div>
+		<div class="col-lg-1"><%=matchDTO.getMatchGender()%></div>
+		<div class="col-lg-2"><%=matchDTO.getMatchLevel()%></div>
+		<div class="col-lg-1"><%=matchDTO.getReqCnt()%> / <%=matchDTO.getMatchMem()%></div>
+		<% if (!matchDTO.getMatchDateStatus().equals("Y") || matchDTO.getReqCnt() == matchDTO.getMatchMem()) { %>
+		<div class="col-lg-1">마감</div>
+		<% } else if (!matchDTO.getReqStatus().equals("Y")) { %>
+		<div class="col-lg-1">
+			<input type="button" class="btn" value="참여" onclick="matchReq(<%=matchDTO.getMatchSeq()%>)" />
+		</div>
+		<% } else { %>
+		<div class="col-lg-1">
+			<input type="button" class="btn" value="취소" onclick="matchReqCnc(<%=matchDTO.getReqSeq()%>)" />
+		</div>
+		<% } %>
 	</div>
-</form>
-
-
-
-<%--<form id="matchStartForm" method="post">
-</form>--%>
-
-
-</header>
-<!-- Content section-->
-<section class="py-5">
-	<div class="container my-5">
-		<div class="row justify-content-center">
-
-
+	<%
+		}
+	%>
+	<div class="row" style="display:flex; margin-left: 100px; margin-top: 50px">
+		<div class="col-lg-4" style="text-align: right;">
+			<img id="imgBasket1" class="imgBasket" src="<%=image_link1%>" style="float: left; margin-right: 150px; width: 200px; height: 300px;">
+		</div>
+		<div class="col-lg-4" style="text-align: right;">
+			<img id="imgBasket2" class="imgBasket" src="<%=image_link2%>" style="float: left; margin-right: 150px; width: 200px; height: 300px;">
+		</div>
+		<div class="col-lg-4" style="text-align: right;">
+			<img id="imgBasket3" class="imgBasket" src="<%=image_link3%>" style="float: left; margin-right: 150px; width: 200px; height: 300px;">
 		</div>
 	</div>
-</section>
-<!-- Image element - set the background image for the header in the line below-->
-<!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
-<%--<div style="height: 20rem"></div>--%>
 </div>
-<!-- Content section-->
-<section class="py-5">
-	<div class="container my-5">
-		<div class="row justify-content-center">
-
-		</div>
-	</div>
-</section>
+</form>
 <br>
 <%@include file="footer.jsp"%>
 

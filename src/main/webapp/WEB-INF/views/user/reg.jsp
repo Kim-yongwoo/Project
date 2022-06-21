@@ -97,6 +97,18 @@
                                     <option value="일반">일반</option>
                                 </select>
                             </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="userPlayer">userPlayer</label>
+                                <select id="userPlayer" class="form-control" name="userPlayer">
+                                    <option value="마이클 조던">마이클 조던</option>
+                                    <option value="클레이 탐슨">클레이 탐슨</option>
+                                    <option value="르브론 제임스">르브론 제임스</option>
+                                    <option value="스테판 커리">스테판 커리</option>
+                                    <option value="야니스 아데토쿤보">야니스 아데토쿤보</option>
+                                    <option value="제임스 하든">제임스 하든</option>
+
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <button type="button" id="userInfoSave" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
                             </div>

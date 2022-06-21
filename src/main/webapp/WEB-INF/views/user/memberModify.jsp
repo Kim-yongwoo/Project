@@ -36,7 +36,7 @@
 </head>
 <body>
 <%@include file="../headerMenu.jsp"%>
-<div style="margin-left: 200px;">
+<div style="margin-left: 200px; margin-top: 100px;">
 <h3>회원정보 수정</h3>
 <form id="updateUserInfoForm" method="post">
     <p>
@@ -69,6 +69,18 @@
             <option value="일반">일반</option>
         </select>
     </p>
+    <p>
+        <label>나의 선수</label>
+        <%--<input class="w3-input" type="text" id="userLevel" name="userLevel" value="<%=userinfo.getUserLevel()%>">--%>
+        <select id="userPlayer" name="userPlayer">
+            <option value="마이클 조던">마이클 조던</option>
+            <option value="클레이 탐슨">클레이 탐슨</option>
+            <option value="르브론 제임스">르브론 제임스</option>
+            <option value="스테판 커리">스테판 커리</option>
+            <option value="야니스 아데토쿤보">야니스 아데토쿤보</option>
+            <option value="제임스 하든">제임스 하든</option>
+        </select>
+    </p>
 
     <p class="w3-center">
 
@@ -77,8 +89,8 @@
 
 </form>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-<input type="button" onclick="location.href='/mypage'" value="뒤로가기">
+<br><br><br><br><br>
+<%--<input type="button" onclick="location.href='/mypage'" value="뒤로가기">--%>
 </div>
 <%@include file="../footer.jsp"%>
 </body>

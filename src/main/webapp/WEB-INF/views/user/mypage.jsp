@@ -37,6 +37,28 @@
                 })
             }
         })
+
+
+        /*let playerNamesIdx = 0;
+        let playerNames = ["마이클 조던", "클레이 탐슨", "르브론 제임스", "스테판 커리", "야니스 아데토쿤보", "제임스 하든"];
+        // 사진 클릭
+        $("#imgBasket").click(function(){
+
+            // 선수이름 배열 인덱스 초기화
+            if (playerNamesIdx >= playerNames.length) {
+                playerNamesIdx = 0;
+            }
+
+            $.ajax({
+                type: "POST"
+                , url: "/searchImageApi"
+                , data: {"playerName" : playerNames[playerNamesIdx]}
+                , success: function(image_link) {
+                    $("#imgBasket").attr("src", image_link);
+                    playerNamesIdx++;
+                }
+            })
+        })*/
     })
     </script>
 
@@ -45,7 +67,8 @@
 <%@include file="../headerMenu.jsp"%>
 <div style="margin: 50px 0 0 200px;">
 
-    <img src="<%=image_link%>" style="float: right; margin-right: 250px; width: 500px; height: 600px;">
+    <img id="imgBasket" src="<%=image_link%>" style="float: right; margin-right: 250px; width: 500px; height: 600px;">
+  <%--  <img id="imgBasket" src="<%=image_link%>" style="float: right; margin-right: 250px; width: 500px; height: 600px; object-fit: cover">--%>
 <div class="w3-content w3-container w3-margin-top"></div>
     <div class="w3-container w3-card-4"></div>
         <div class="w3-center w3-large w3-margin-top">
@@ -74,6 +97,10 @@
                 <p>
                     <label>레벨 : </label>
                     <span><%=userinfo.getUserLevel()%></span>
+                </p>
+                <p>
+                    <label>나의 선수 : </label>
+                    <span><%=userinfo.getUserplayer()%></span>
                 </p>
                 <br><br>
                 <p class="w3-center">

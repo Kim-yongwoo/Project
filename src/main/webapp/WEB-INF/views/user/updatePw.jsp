@@ -35,7 +35,7 @@
 </head>
 <body>
 <%@include file="../headerMenu.jsp"%>
-<div style="margin-left: 200px;">
+<div style="margin-left: 200px; margin-top: 100px;">
 <form id="updatePwForm" method="post">
     <p>
         <label>현재 비밀번호</label>
@@ -56,8 +56,8 @@
 
 
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<input type="button" onclick="location.href='/mypage'" value="뒤로가기">
+<br><br><br><br><br><br><br>
+<%--<input type="button" onclick="location.href='/mypage'" value="뒤로가기">--%>
     </div>
 <%@include file="../footer.jsp"%>
 </body>
