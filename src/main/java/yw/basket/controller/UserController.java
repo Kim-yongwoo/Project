@@ -177,7 +177,7 @@ public class UserController {
         userDTO.setUserNickname(userNickname);
         userDTO.setUserGender(userGender);
         userDTO.setUserLevel(userLevel);
-        userDTO.setUserplayer(userPlayer);
+        userDTO.setUserPlayer(userPlayer);
 
         userDTO.setUserSeq(user.getUserSeq());
 
@@ -192,7 +192,7 @@ public class UserController {
         UserDTO userinfo = userService.getUserInfo(user);
 
         //이미지 가져오기
-        String word = ApiUtil.search(userinfo.getUserplayer());
+        String word = ApiUtil.search(userinfo.getUserPlayer());
         model.addAttribute("image_link", word);
 
         model.addAttribute("userinfo", userinfo);

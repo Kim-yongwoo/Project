@@ -106,7 +106,9 @@
 </head>
 <body>
 <%@include file="../headerMenu.jsp"%>
+    <div class="container">
     <h1>매치생성</h1>
+
     <form id="matchRegSaveForm" method="post">
         <!-- 경기지역 -->
         <div class="form-group">
@@ -182,7 +184,7 @@
             <input type="button" id="matchRegSave" value="매칭시작">
         </div>
         </div>
-
+</div>
     </form>
 
 <%@include file="../footer.jsp"%>

@@ -100,7 +100,7 @@
                 </p>
                 <p>
                     <label>나의 선수 : </label>
-                    <span><%=userinfo.getUserplayer()%></span>
+                    <span><%=userinfo.getUserPlayer()%></span>
                 </p>
                 <br><br>
                 <p class="w3-center">

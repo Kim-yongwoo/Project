@@ -80,7 +80,7 @@
             , USER_NICKNAME = #{userNickname}
             , USER_GENDER = #{userGender}
             , USER_LEVEL = #{userLevel}
-            , USER_PLAYER = #{userplayer}
+            , USER_PLAYER = #{userPlayer}
         WHERE USER_SEQ = #{userSeq}
 
 
@@ -111,6 +111,26 @@
         SET
          USER_STATUS = 'N'
         WHERE USER_SEQ = #{userSeq}
+
+    </update>
+
+    <!-- -->
+    <select id="emailCheck" resultType="int">
+        SELECT COUNT(*)
+        FROM
+            TB_USER
+        WHERE
+            USER_ID = #{userId}
+            AND
+            USER_EMAIL = #{userEmail}
+    </select>
+
+    <update id="updateOncePw" parameterType="UserDTO">
+        UPDATE
+            TB_USER
+        SET
+            USER_PW = #{userPwNew}
+        WHERE USER_ID = #{userId}
 
     </update>
 

@@ -1,10 +1,12 @@
 package yw.basket.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
 
+@Data
 @Getter
 @Setter
 public class UserDTO {
@@ -22,7 +24,7 @@ public class UserDTO {
     private String userStatus;
     private Timestamp joinDt;
     private String userPwNew;
-    private String userplayer;
+    private String userPlayer;
 
     @Override
     public String toString() {

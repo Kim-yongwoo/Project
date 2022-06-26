@@ -22,42 +22,42 @@
     <h2>게시글 상세 화면</h2>
     <form id="frm" method="post">
         <div class="board_detail">
-<%--            <colgroup>--%>
-<%--                <col width="15%"/>--%>
-<%--                <col width="35%"/>--%>
-<%--                <col width="15%"/>--%>
-<%--                <col width="35%"/>--%>
-<%--            </colgroup>--%>
+            <%--            <colgroup>--%>
+            <%--                <col width="15%"/>--%>
+            <%--                <col width="35%"/>--%>
+            <%--                <col width="15%"/>--%>
+            <%--                <col width="35%"/>--%>
+            <%--            </colgroup>--%>
             <%--<caption>게시글 상세내용</caption>--%>
             <div class="container">
-            <div class="row">
-                <div class="col-2">글 번호</div>
-                <div class="col"><%=boardDTO.getBoardSeq()%></div>
-            </div>
-            <div class="row">
-                <div class="col-2">제목</div>
-                <div class="col"><%=boardDTO.getBoardTitle()%></div>
-            </div>
-            <div class="row">
-                <div class="col-2">작성자</div>
-                <div class="col"><%=boardDTO.getBoardUserName()%></div>
-            </div>
-            <div class="row">
-                <div class="col-2">작성일</div>
-                <div class="col"><%=boardDTO.getBoardRegDate().toString().substring(0, 11)%></div>
-            </div>
-            <div class="row">
-                <div class="col-2">제목</div>
-                <div class="col">
-                    <input type="text" id="title" name="boardTitle" value="<%=boardDTO.getBoardTitle()%>"/>
+                <div class="row">
+                    <div class="col-2">글 번호</div>
+                    <div class="col"><%=boardDTO.getBoardSeq()%></div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="view_text col">
-                   <%-- <input type="text" name="boardContents" value="<%=boardDTO.getBoardContents()%>">--%>
-                    <textarea type="textarea" class="form-control" id="contents" name="boardContents"><%=boardDTO.getBoardContents()%></textarea>
+                <div class="row">
+                    <div class="col-2">제목</div>
+                    <div class="col"><%=boardDTO.getBoardTitle()%></div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-2">작성자</div>
+                    <div class="col"><%=boardDTO.getBoardUserName()%></div>
+                </div>
+                <div class="row">
+                    <div class="col-2">작성일</div>
+                    <div class="col"><%=boardDTO.getBoardRegDate().toString().substring(0, 11)%></div>
+                </div>
+                <div class="row">
+                    <div class="col-2">제목</div>
+                    <div class="col">
+                        <input type="text" id="title" name="boardTitle" value="<%=boardDTO.getBoardTitle()%>"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="view_text col">
+                        <%-- <input type="text" name="boardContents" value="<%=boardDTO.getBoardContents()%>">--%>
+                        <textarea type="textarea" class="form-control" id="contents" name="boardContents"><%=boardDTO.getBoardContents()%></textarea>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -89,9 +89,6 @@
                 frm.submit();
             });
         })
-
-
-
     </script>
 
 </div>
