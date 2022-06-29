@@ -160,7 +160,6 @@ public class UserController {
 
         UserDTO user = (UserDTO) session.getAttribute("user");
 
-
         //session을 통해서 user에 값을 받고  여기 user에는 세션에서 받은 id와 seq가 있따
         //getUserInfo 메소드에 user를 파라미터로 보내고 받아온 결과값을 userDTO에 담는다
         String userName = CmmUtil.nvl(map.get("userName"));
