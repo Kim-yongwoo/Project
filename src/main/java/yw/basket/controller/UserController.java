@@ -254,7 +254,6 @@ public class UserController {
             } else {
                 res = 0;
             }
-
         }
         return res;
     }
