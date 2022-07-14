@@ -255,6 +255,7 @@ public class UserController {
                 res = 0;
             }
         }
+
         return res;
     }
 
