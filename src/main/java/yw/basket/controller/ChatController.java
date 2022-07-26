@@ -37,7 +37,9 @@ public class ChatController {
         cDTO.setChatName(chatMessage.getSender());
         cDTO.setChatContents(chatMessage.getContent());
         cDTO.setChatDt(DateUtil.getDateTime("yyyy.MM.dd.HH.mm.ss"));
+
         chatService.saveMessage(cDTO);
+
         return chatMessage;
     }
 
