@@ -32,7 +32,7 @@ public class MainController {
         this.matchService = matchService;
     }
 
-
+    //메인페이지
     @GetMapping(value = "/main")
     public String main(MatchDTO matchDTO, HttpSession session, Model model) throws Exception {
 
