@@ -38,7 +38,6 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         log.info("리스트ㅡㅡㅡ" + boardList);
         return "/board/boardList";
-
     }
 
     //게시글 작성 화면
