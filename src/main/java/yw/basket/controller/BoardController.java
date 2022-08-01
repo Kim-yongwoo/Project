@@ -66,6 +66,7 @@ public class BoardController {
         model.addAttribute("url", "/boardList");
 
         return "/red";    //게시글 리스트로 이동
+
     }
 
     //게시글 조회 화면
