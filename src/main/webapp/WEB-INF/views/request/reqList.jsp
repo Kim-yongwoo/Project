@@ -80,6 +80,7 @@
             <div class="col-lg-2"><%=matchDTO.getMatchTime()%></div>
             <div class="col-lg-3" style="text-align: left">
                 <a href="/matchDetail/<%=matchDTO.getMatchSeq()%>"><%=matchDTO.getMatchLocD()%> <%=matchDTO.getMatchGmName()%></a></div>
+
             <div class="col-lg-1"><%=matchDTO.getMatchGender()%></div>
             <div class="col-lg-2"><%=matchDTO.getMatchLevel()%></div>
             <div class="col-lg-1"><%=matchDTO.getReqCnt()%> / <%=matchDTO.getMatchMem()%></div>
