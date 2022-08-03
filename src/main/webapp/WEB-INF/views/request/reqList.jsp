@@ -85,6 +85,7 @@
             <div class="col-lg-1"><%=matchDTO.getMatchGender()%></div>
             <div class="col-lg-2"><%=matchDTO.getMatchLevel()%></div>
             <div class="col-lg-1"><%=matchDTO.getReqCnt()%> / <%=matchDTO.getMatchMem()%></div>
+
             <% if (!matchDTO.getMatchDateStatus().equals("Y") || matchDTO.getReqCnt() == matchDTO.getMatchMem()) { %>
             <div class="col-lg-1">마감</div>
             <% } else if (!matchDTO.getReqStatus().equals("Y")) { %>
