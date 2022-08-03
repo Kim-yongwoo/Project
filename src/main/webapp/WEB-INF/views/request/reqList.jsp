@@ -75,6 +75,7 @@
         <%
             for (MatchDTO matchDTO : reqList) {
         %>
+
         <div class="row" style="font-size: 12pt; text-align: center; border-bottom: 1px solid #cccccc">
             <div class="col-lg-2"><%=matchDTO.getMatchDate()%></div>
             <div class="col-lg-2"><%=matchDTO.getMatchTime()%></div>
