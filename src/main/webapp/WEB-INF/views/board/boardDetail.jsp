@@ -75,6 +75,7 @@
             $("#list").on("click", function(){
                 location.href = "/boardList";
             });
+
             $("#edit").on("click", function(){
                 var frm = $("#frm")[0];
                 let junggyu = /[^a-zA-Z0-9가-힣ㄱ-ㅎ]/g;
