@@ -17,7 +17,9 @@
 
 </head>
 <body>
+
 <%@include file="../headerMenu.jsp"%>
+
 <div class="container">
     <h2>게시글 상세 화면</h2>
     <form id="frm" method="post">
