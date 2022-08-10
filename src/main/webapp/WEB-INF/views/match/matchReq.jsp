@@ -10,7 +10,6 @@
             $("#matchReq").click(function(){
 
                 let params = $("#matchReqForm").serialize();
-
                 $.ajax({
                     type: "POST"
                     , url: "/matchReq"
