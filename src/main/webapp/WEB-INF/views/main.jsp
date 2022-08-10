@@ -198,7 +198,6 @@
 	<%
 		}
 	%>
-
 	<div class="row" style="display:flex; margin-left: 100px; margin-top: 50px">
 		<div class="col-lg-4" style="text-align: right;">
 			<img id="imgBasket1" class="imgBasket" src="<%=image_link1%>" style="float: left; margin-right: 150px; width: 200px; height: 300px;">

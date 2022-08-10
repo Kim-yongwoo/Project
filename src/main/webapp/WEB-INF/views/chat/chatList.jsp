@@ -8,8 +8,5 @@
 </head>
 <body>
 	채팅 리스트 화면
-
-
-
 </body>
 </html>
