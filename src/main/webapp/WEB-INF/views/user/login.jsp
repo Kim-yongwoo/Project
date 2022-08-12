@@ -12,7 +12,6 @@
 
             let params = $("#loginForm").serialize();
 
-
             $.ajax({
                 url: "/loginProc",
                 type: "POST",
