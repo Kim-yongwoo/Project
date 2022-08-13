@@ -32,7 +32,6 @@ public class ChatMapper implements IChatMapper {
 
         redisDB.setKeySerializer(new StringRedisSerializer());
         redisDB.setValueSerializer(new Jackson2JsonRedisSerializer<>(ChatDTO.class));
-
         redisDB.opsForList().rightPush(redisKey, chatDTO);
 
         redisDB.expire(redisKey, 1, TimeUnit.DAYS);
