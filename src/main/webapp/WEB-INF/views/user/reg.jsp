@@ -231,7 +231,6 @@
                     $('.id_input_re_1').css("display", "none");
                     idckCheck = false;
                 }
-
             }//success종료
         }); // ajax 종료
 
