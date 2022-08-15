@@ -134,7 +134,6 @@
 			$(".imgBasket").click(function(){
 
 				let imgId = $(this).attr("id");
-
 				// 선수이름 배열 인덱스 초기화
 				if (playerNamesIdx >= playerNames.length) {
 					playerNamesIdx = 0;
