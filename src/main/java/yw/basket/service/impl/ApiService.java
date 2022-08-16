@@ -49,7 +49,6 @@ public class ApiService implements IApiService {
     public List<String> getGroundInfo(String siName) throws Exception {
         log.debug("test Api Start!");
 
-
         URI uri = new URI("");
 
         log.debug("name : " + siName);
