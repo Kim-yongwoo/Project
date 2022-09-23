@@ -21,6 +21,9 @@
         , JOIN_DT
         , USER_PW_NEW
         , USER_PLAYER
+        , ADDR1
+        , ADDR2
+        , ADDR3
         )
         VALUES
         (
@@ -37,6 +40,9 @@
         , NOW()
         , #{userPwNew}
         , #{userPlayer}
+        , #{addr1}
+        , #{addr2}
+        , #{addr3}
         )
 
     </insert>

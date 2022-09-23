@@ -25,6 +25,10 @@ public class UserDTO {
     private Timestamp joinDt;
     private String userPwNew;
     private String userPlayer;
+    private String addr1;
+    private String addr2;
+    private String addr3;
+
 
     @Override
     public String toString() {
@@ -41,6 +45,9 @@ public class UserDTO {
                 ", userNickname='" + userNickname + '\'' +
                 ", userStatus='" + userStatus + '\'' +
                 ", joinDt=" + joinDt +
+                ", addr1='" + addr1 + '\'' +
+                ", addr2='" + addr2 + '\'' +
+                ", addr3='" + addr3 + '\'' +
                 '}';
     }
 }

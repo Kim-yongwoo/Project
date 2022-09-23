@@ -73,6 +73,24 @@
                                 <span class="final_mail_ck">이메일을 입력해주세요.</span>
                                 <span class="mail_input_box_warn"></span>
                             </div>
+
+
+                            <div class="form-group">
+                                <input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
+                                <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text"  />
+                            </div>
+
+                        <%-- <label>* 주소 : <input type="text" name="userAddr" style="width:400px" readonly/></label>
+                            <input type="button" value="우편번호" onclick="kakaoPost(this.form)"/>
+                            <br/>
+                            <label>* 상세 주소 : <input type="text" name="userAddrDt" style="width:400px"/></label><br/>--%>
+
                             <div class="form-group mb-3 userAge">
                                 <label class="label" for="userAge">userAge</label>
                                 <input type="number" id="userAge" name="userAge" class="form-control userAge" placeholder="userAge" required>
@@ -296,7 +314,7 @@
         let form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         return form.test(userEmail);
     }
-
 </script>
+
 </body>
 </html>
