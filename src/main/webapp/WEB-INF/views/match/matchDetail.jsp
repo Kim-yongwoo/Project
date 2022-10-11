@@ -25,6 +25,8 @@
                     if (res > 0) {
                         alert("매치에 참여하셨습니다");
                         location.href = "/main";
+                    } else if (res == -1) {
+                        alert("레벨을 선택 후 다시 신청해주세요");
                     } else {
                         alert("다시 시도해주세요")
                     }
@@ -178,7 +180,7 @@
         <% } %>
     </div>
 
-</form>
+    </form>
 </div>
 <%@include file="../footer.jsp"%>
 </body>

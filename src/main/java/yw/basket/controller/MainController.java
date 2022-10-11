@@ -49,6 +49,7 @@ public class MainController {
         model.addAttribute("image_link3", word3);
         model.addAttribute("matchDTOList", matchDTOList);
         return "/main";
+
     }
 
     //매칭페이지 이동

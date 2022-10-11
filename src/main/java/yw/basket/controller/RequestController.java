@@ -14,6 +14,7 @@ import yw.basket.dto.MatchDTO;
 import yw.basket.dto.UserDTO;
 import yw.basket.service.IMatchService;
 import yw.basket.service.IRequestService;
+import yw.basket.service.IUserService;
 
 
 import javax.annotation.Resource;
@@ -28,6 +29,12 @@ public class RequestController {
     @Resource(name = "RequestService")
     private IRequestService requestService;
 
+    @Resource(name = "MatchService")
+    private IMatchService matchService;
+
+    @Resource(name = "UserService")
+    private IUserService userService;
+
     //매칭 참여 (상세)
     @PostMapping(value = "/matchReq")
     @ResponseBody
@@ -38,6 +45,23 @@ public class RequestController {
         //userSeq통해서 matchRegSeq 가져옴
         requestDTO.setReqUserSeq(user.getUserSeq());
         requestDTO.setReqMatchSeq(matchDTO.getMatchSeq());
+
+
+        matchDTO.setReqUserSeq(user.getUserSeq());
+
+        //match상세 정보 가져오기
+        matchDTO = matchService.matchDetail(matchDTO);
+        //user상세 정보 가져오기
+        UserDTO userinfo = userService.getUserInfo(user);
+
+        log.info("matchDTO : " + matchDTO.getMatchLevel());
+        log.info("UserDTO : " + userinfo.getUserLevel());
+
+        //match레벨과 user레벨이 다른 경우
+        if(!matchDTO.getMatchLevel().equals(userinfo.getUserLevel())) {
+            return -1;
+        }
+
 
         return requestService.matchReqSave(requestDTO);
     }

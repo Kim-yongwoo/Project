@@ -27,6 +27,7 @@
 	<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>--%>
 
 	<%@include file="header.jsp"%>
+	<script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" integrity="sha384-vuFJ2JiSdUpXLKGK+tDteQZBqNlMwAjhZ3TvPaDfN9QmbPb7Q8qUpbSNapQev3YF" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		// 매칭 참여
 		function matchReq(matchSeq) {
@@ -42,6 +43,8 @@
 					if (res > 0) {
 						alert("매치에 참여하셨습니다");
 						location.href = "/main";
+					} else if (res == -1) {
+						alert("레벨을 선택 후 다시 신청해주세요");
 					} else {
 						alert("다시 시도해주세요")
 					}
@@ -147,68 +150,135 @@
 						$("#" + imgId).attr("src", image_link);
 						playerNamesIdx++;
 					}
-				})
-			})
+				});
+			});
+
+			//날씨 데이터 불러오기
+			$.ajax({
+				url:'https://api.openweathermap.org/data/2.5/weather?q=Goyang-si&appid=f86049836d87211b3c3a2cdf5696ce52',
+
+				dataType:'json',
+				type:'GET',
+				success:function(data){
+					var $Icon = data.weather[0].icon;
+					$('.weather-info').append('<img src="http://openweathermap.org/img/wn/' + $Icon + '@2x.png" />');
+				}
+			});
+
+			//코로나 데이터 불러오기
+			$.ajax({
+				url:'https://api.corona-19.kr/korea/?serviceKey=Nl6iOmn5Ao9dC3ue8ryMawxZtjTRP1E2f',
+
+				dataType:'json',
+				type:'GET',
+				success:function(data){
+					let $totalCase = data.TotalCase;//누적확진자
+					let $previousDayCase = data.TotalCaseBefore;//전일 0시 기준 신규확진자 수
+					let $totalDeath = data.TotalDeath;//누적 사망자
+					let $updateTime = data.updateTime;//
+
+					let split_update_time = $updateTime.split('(');
+					split_update_time = split_update_time[1].split(' ');
+
+					let updateDate = split_update_time[0];
+
+					let newCaseCount = $previousDayCase.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+					let _date = new Date(updateDate);
+
+					let previous_date = new Date(_date.setDate(_date.getDate() - 1));
+					let previous_date_month = previous_date.getMonth()+1
+					let previous_date_date = previous_date.getDate()
+
+					$('.updateDate').text(previous_date_month + '.' + previous_date_date);
+					$('.newCaseCount').text(newCaseCount);
+					$('.totalCaseCount').text($totalCase);
+					$('.totalDeathCount').text($totalDeath);
+
+					$('.corona19').css('visibility', 'visible');
+				}
+			});
 		});
 	</script>
 </head>
 <body><!-- Responsive navbar-->
 <%@include file="headerMenu.jsp"%>
 
-<div style="margin: 50px 0 0 200px;">
-	<div><%--<%= user.getUserSeq() %> --%><%= user.getUserName() %> 님</div>
-	<input type="button" onclick="location.href='/matchReg'" value="매칭시작"></div>
-<%--<input style="float: left; margin-right: 150px; width: 500px; height: 700px;">--%>
-<form id="getMatchForm" method="post">
-
-<div class="container">
-	<div class="row vertical-center" style="font-weight: bold; font-size: 12pt; line-height: 5; border-bottom: 1px solid #cccccc">
-		<div class="col-lg-2 text-center">경기날짜</div>
-		<div class="col-lg-2 text-center">경기시간</div>
-		<div class="col-lg-3 text-center">구장이름</div>
-		<div class="col-lg-1 text-center">성별구분</div>
-		<div class="col-lg-2 text-center">레벨</div>
-		<div class="col-lg-1 text-center">참여인원</div>
-		<div class="col-lg-1 text-center">신청</div>
+<div style="margin: 50px 0 0 200px; display: flex; justify-content: space-between; align-items: center;">
+	<div>
+		<div><%--<%= user.getUserSeq() %> --%><%= user.getUserName() %> 님</div>
+		<input type="button" onclick="location.href='/matchReg'" value="매칭시작">
 	</div>
-	<%
-		for (MatchDTO matchDTO : matchDTOList) {
-	%>
-	<div class="row" style="font-size: 12pt; text-align: center;  border-bottom: 1px solid #cccccc" >
-		<div class="col-lg-2"><%=matchDTO.getMatchDate()%></div>
-		<div class="col-lg-2"><%=matchDTO.getMatchTime()%></div>
-		<div class="col-lg-3" style="text-align: left">
-			<a href="/matchDetail/<%=matchDTO.getMatchSeq()%>"><%=matchDTO.getMatchLocD()%> <%=matchDTO.getMatchGmName()%></a></div>
-		<div class="col-lg-1"><%=matchDTO.getMatchGender()%></div>
-		<div class="col-lg-2"><%=matchDTO.getMatchLevel()%></div>
-		<div class="col-lg-1"><%=matchDTO.getReqCnt()%> / <%=matchDTO.getMatchMem()%></div>
-		<% if (!matchDTO.getMatchDateStatus().equals("Y") || matchDTO.getReqCnt() == matchDTO.getMatchMem()) { %>
-		<div class="col-lg-1">마감</div>
-		<% } else if (!matchDTO.getReqStatus().equals("Y")) { %>
-		<div class="col-lg-1">
-			<input type="button" class="btn" value="참여" onclick="matchReq(<%=matchDTO.getMatchSeq()%>)" />
-		</div>
-		<% } else { %>
-		<div class="col-lg-1">
-			<input type="button" class="btn" value="취소" onclick="matchReqCnc(<%=matchDTO.getReqSeq()%>)" />
-		</div>
-		<% } %>
-	</div>
-	<%
-		}
-	%>
-	<div class="row" style="display:flex; margin-left: 100px; margin-top: 50px">
-		<div class="col-lg-4" style="text-align: right;">
-			<img id="imgBasket1" class="imgBasket" src="<%=image_link1%>" style="float: left; margin-right: 150px; width: 200px; height: 300px;">
-		</div>
-		<div class="col-lg-4" style="text-align: right;">
-			<img id="imgBasket2" class="imgBasket" src="<%=image_link2%>" style="float: left; margin-right: 150px; width: 200px; height: 300px;">
-		</div>
-		<div class="col-lg-4" style="text-align: right;">
-			<img id="imgBasket3" class="imgBasket" src="<%=image_link3%>" style="float: left; margin-right: 150px; width: 200px; height: 300px;">
+	<div style="display: flex; justify-content: center; align-items: center;">
+		<div class="weather-info"></div>
+		<div class="corona19" style="visibility: hidden; margin-right: 25px;">
+			<div class="newCase">
+				<span class="updateDate" style="font-size: 20px; font-weight: bold; color: black;"></span>&nbsp;
+				<span class="newCaseTitle" style="font-size: 20px; font-weight: bold; color: black;">신규 확진자</span>&nbsp;
+				<span class="newCaseCount" style="font-size: 20px; font-weight: bold; color: red;"></span>
+			</div>
+			<div style="text-align: center;">
+				<span class="totalDeathTitle">누적 확진자</span>&nbsp;
+				<span class="totalCaseCount" style="color: red;"></span>
+			</div>
+			<div style="text-align: center;">
+				<span class="totalDeathTitle">누적 사망자</span>&nbsp;
+				<span class="totalDeathCount" style="color: red;"></span>
+			</div>
 		</div>
 	</div>
 </div>
+<%--<input style="float: left; margin-right: 150px; width: 500px; height: 700px;">--%>
+<form id="getMatchForm" method="post">
+
+	<div class="container">
+		<div class="row vertical-center" style="font-weight: bold; font-size: 12pt; line-height: 5; border-bottom: 1px solid #cccccc">
+			<div class="col-lg-2 text-center">경기날짜</div>
+			<div class="col-lg-2 text-center">경기시간</div>
+			<div class="col-lg-3 text-center">구장이름</div>
+			<div class="col-lg-1 text-center">성별구분</div>
+			<div class="col-lg-2 text-center">레벨</div>
+			<div class="col-lg-1 text-center">참여인원</div>
+			<div class="col-lg-1 text-center">신청</div>
+		</div>
+		<%
+			for (MatchDTO matchDTO : matchDTOList) {
+		%>
+		<div class="row" style="font-size: 12pt; text-align: center;  border-bottom: 1px solid #cccccc" >
+			<div class="col-lg-2"><%=matchDTO.getMatchDate()%></div>
+			<div class="col-lg-2"><%=matchDTO.getMatchTime()%></div>
+			<div class="col-lg-3" style="text-align: left">
+				<a href="/matchDetail/<%=matchDTO.getMatchSeq()%>"><%=matchDTO.getMatchLocD()%> <%=matchDTO.getMatchGmName()%></a></div>
+			<div class="col-lg-1"><%=matchDTO.getMatchGender()%></div>
+			<div class="col-lg-2"><%=matchDTO.getMatchLevel()%></div>
+			<div class="col-lg-1"><%=matchDTO.getReqCnt()%> / <%=matchDTO.getMatchMem()%></div>
+			<% if (!matchDTO.getMatchDateStatus().equals("Y") || matchDTO.getReqCnt() == matchDTO.getMatchMem()) { %>
+			<div class="col-lg-1">마감</div>
+			<% } else if (!matchDTO.getReqStatus().equals("Y")) { %>
+			<div class="col-lg-1">
+				<input type="button" class="btn" value="참여" onclick="matchReq(<%=matchDTO.getMatchSeq()%>)" />
+			</div>
+			<% } else { %>
+			<div class="col-lg-1">
+				<input type="button" class="btn" value="취소" onclick="matchReqCnc(<%=matchDTO.getReqSeq()%>)" />
+			</div>
+			<% } %>
+		</div>
+		<%
+			}
+		%>
+		<div class="row" style="display:flex; margin-left: 100px; margin-top: 50px">
+			<div class="col-lg-4" style="text-align: right;">
+				<img id="imgBasket1" class="imgBasket" src="<%=image_link1%>" style="float: left; margin-right: 150px; width: 200px; height: 300px;">
+			</div>
+			<div class="col-lg-4" style="text-align: right;">
+				<img id="imgBasket2" class="imgBasket" src="<%=image_link2%>" style="float: left; margin-right: 150px; width: 200px; height: 300px;">
+			</div>
+			<div class="col-lg-4" style="text-align: right;">
+				<img id="imgBasket3" class="imgBasket" src="<%=image_link3%>" style="float: left; margin-right: 150px; width: 200px; height: 300px;">
+			</div>
+		</div>
+	</div>
 </form>
 <br>
 <%@include file="footer.jsp"%>
