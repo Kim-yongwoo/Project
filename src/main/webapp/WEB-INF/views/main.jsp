@@ -24,7 +24,7 @@
 
 	<!-- Bootstrap 사용을 위한 링크 -->
 	<%--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">--%>
-	<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>--%>
+	<%--<script src="https://cdn.jsdelivr.net/npFm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>--%>
 
 	<%@include file="header.jsp"%>
 	<script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" integrity="sha384-vuFJ2JiSdUpXLKGK+tDteQZBqNlMwAjhZ3TvPaDfN9QmbPb7Q8qUpbSNapQev3YF" crossorigin="anonymous"></script>
@@ -155,7 +155,7 @@
 
 			//날씨 데이터 불러오기
 			$.ajax({
-				url:'https://api.openweathermap.org/data/2.5/weather?q=Goyang-si&appid=f86049836d87211b3c3a2cdf5696ce52',
+				url:'https://api.openweathermap.org/data/2.5/weather?q=Goyang-si&appid=인증키',
 
 				dataType:'json',
 				type:'GET',
@@ -167,7 +167,7 @@
 
 			//코로나 데이터 불러오기
 			$.ajax({
-				url:'https://api.corona-19.kr/korea/?serviceKey=Nl6iOmn5Ao9dC3ue8ryMawxZtjTRP1E2f',
+				url:'https://api.corona-19.kr/korea/?serviceKey=인증키',
 
 				dataType:'json',
 				type:'GET',

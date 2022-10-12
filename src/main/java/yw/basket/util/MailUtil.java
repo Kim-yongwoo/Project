@@ -15,7 +15,7 @@ public class MailUtil {
         HtmlEmail email1 = new HtmlEmail();
         email1.setHostName("smtp.naver.com");
         email1.setSmtpPort(465);
-        String password = "";
+        String password = "비번 입력하세요";
         email1.setAuthentication("redgum0319@naver.com", password);
 
         email1.setSSLOnConnect(true);
